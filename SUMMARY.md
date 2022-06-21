@@ -6,7 +6,8 @@
 
 ## 👿 Vulnerabilities Cases
 
-* [Client Implementation](vulnerabilities-cases/client-implementation.md)
+* [Client Implementation](vulnerabilities-cases/client-implementation/README.md)
+  * [Copy & Paste Private Keys](vulnerabilities-cases/client-implementation/copy-and-paste-private-keys.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
 * [Phishing](attack-vectors/phishing.md)
