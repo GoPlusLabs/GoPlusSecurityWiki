@@ -5,10 +5,11 @@
 * [Introduction](README.md)
 * [Test](intro/test.md)
 
-## 👿 Attack Vectors
+## 👿 Vulnerabilities Cases
 
-* [Replay Attack](attack-vectors/replay-attack/README.md)
-  * [Wintermute & OP](attack-vectors/replay-attack/wintermute-and-op.md)
-* [Phishing](attack-vectors/phishing.md)
-* [NFT](attack-vectors/nft.md)
-* [Cryptography](attack-vectors/cryptography.md)
+* [Replay Attack](vulnerabilities-cases/replay-attack/README.md)
+  * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
+* [Phishing](vulnerabilities-cases/phishing.md)
+* [NFT](vulnerabilities-cases/nft/README.md)
+  * [ERC721R Refund](vulnerabilities-cases/nft/erc721r-refund.md)
+* [Cryptography](vulnerabilities-cases/cryptography.md)
