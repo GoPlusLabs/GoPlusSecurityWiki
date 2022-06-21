@@ -2,15 +2,20 @@
 
 ## 📗 Intro
 
-* [Hello, dark forest!](README.md)
+* [Hello, Dark Forest!](README.md)
 
 ## 👿 Vulnerabilities Cases
 
-* [Client Implementation](vulnerabilities-cases/client-implementation/README.md)
-  * [Copy & Paste Private Keys](vulnerabilities-cases/client-implementation/copy-and-paste-private-keys.md)
+* [Blockchain Network](vulnerabilities-cases/blockchain-network/README.md)
+  * [Eclipse Attack](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
+* [User Client](vulnerabilities-cases/user-client/README.md)
+  * [Copy & Paste Private Keys](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
+  * [Metamask phrase leakage](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
-* [Phishing](attack-vectors/phishing.md)
+* [Phishing](vulnerabilities-cases/phishing/README.md)
+  * [Fake E-mail Address](vulnerabilities-cases/phishing/fake-e-mail-address.md)
+  * [Websites](vulnerabilities-cases/phishing/websites.md)
 * [NFT](attack-vectors/nft.md)
   * [ERC721R Refund](vulnerabilities-cases/nft/erc721r-refund.md)
   * [Sleepminting](vulnerabilities-cases/nft/sleepminting.md)
