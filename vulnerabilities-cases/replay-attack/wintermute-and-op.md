@@ -7,13 +7,12 @@ coverY: 0
 
 ## Abstract
 
-| Status       | Exploited                                                                      |   |
-| ------------ | ------------------------------------------------------------------------------ | - |
-| Type         | Contract, Cross-chain replay attack                                            |   |
-| Date         | Jun 05, 2022                                                                   |   |
-| Source       | [@kelvinfichter](https://twitter.com/kelvinfichter/status/1534636743223386119) |   |
-| Direct Loss  | 20M $OP tokens (\~ $30M)                                                       |   |
-| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R)       |   |
+| Status      | Exploited                                                                      |   |
+| ----------- | ------------------------------------------------------------------------------ | - |
+| Type        | Contract, Cross-chain replay attack                                            |   |
+| Date        | Jun 05, 2022                                                                   |   |
+| Source      | [@kelvinfichter](https://twitter.com/kelvinfichter/status/1534636743223386119) |   |
+| Direct Loss | 20M $OP tokens (\~ $30M)                                                       |   |
 
 ## Background
 
@@ -71,14 +70,14 @@ Since he had created the factory, the next step is to make the wallet contract w
 
 ****[_0x4f3a120e72c76c22ae802d129f599bfdbc31cb8_](https://etherscan.io/address/0x4f3a120e72c76c22ae802d129f599bfdbc31cb81)
 
-Unfortunately, the reason this step is viable is also caused by the vulnerability of deterministic address creation: the factory utilised CREATE not CREATE2 function to create its derivations.&#x20;
+Unfortunately, the reason this step is viable is also caused by the vulnerability of deterministic address creation: the factory utilised `CREATE` not `CREATE2` function to create its derivations.&#x20;
 
 \
 `CREATE` : `keccak256(rlp.encode(deployingAddress, nonce))[12:]`
 
 `CREATE2` : `keccak256(0xff ++ deployingAddr ++ salt ++ keccak256(bytecode))[12:]`
 
-In `CREATE2` it takes additional parameters thus has the ability to prevent different msg.sender generating same contract address.
+In `CREATE2` it takes additional parameters thus has the ability to prevent different `msg.sender` generating same contract address.
 
 
 
@@ -99,7 +98,6 @@ Report from [Oluwapelumi Adejumo](https://cryptoslate.com/optimism-hacker-confir
 ## Summary
 
 * To prevent possible replay attacks of different forms(cross-chain, contract deploy, etc.), it's recommended to use EIP155 standard transaction and `CREATE2`.
-* EOAs are naturally cross-chain accounts while smart contract wallets are not. Users should beware of the difference and maybe developers could abstract a more robust and friendly user-level interface.\
-  \
-
+* EOAs are naturally cross-chain accounts while smart contract wallets are not. Users should beware of the difference and maybe developers could abstract a more robust and friendly user-level interface.
+* There were eight days before the hack since Wintermute found this issue. For such a big amount they reacted slowly. If they reported the issue to Optimism in the first place, maybe they could find a way out in time.
 
