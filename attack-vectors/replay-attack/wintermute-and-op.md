@@ -1,3 +1,0 @@
-# Wintermute & OP
-
-qwer

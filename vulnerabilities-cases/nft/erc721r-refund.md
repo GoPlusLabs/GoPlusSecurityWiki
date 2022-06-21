@@ -5,14 +5,15 @@ coverY: 0
 
 # ERC721R Refund
 
-
+## Abstract
 
 | Status       | Fixed                                                                    |   |
 | ------------ | ------------------------------------------------------------------------ | - |
-| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |   |
-| Direct Loss  | None. It was reported in the early stage.                                |   |
-| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |   |
+| Type         | Contract                                                                 |   |
 | Date         | Apr 12, 2022                                                             |   |
+| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |   |
+| Direct Loss  | None. It was reported in the early stage.                                |   |
+| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |   |
 
 ## What is NFT721R?
 
@@ -20,7 +21,7 @@ An NFT protocol enabling minters to return the minted NFT for a refund in a cert
 
 ## Issue
 
-In the typical case, the NFT dev calls this withdraw() function after refundEndTime to withdraw the Eth raised from minting. This step is OK.
+In the typical case, the NFT dev calls this `withdraw()` function after refundEndTime to withdraw the Eth raised from minting. This step is OK.
 
 ```
 function withdraw() external onlyOwner {
@@ -30,7 +31,7 @@ function withdraw() external onlyOwner {
 }
 ```
 
-But, check the refund function: Minter calls this func to return the NFTs he minted to the refundAddress(an address set and controlled by dev) then gets the corresponding amount of [$ETH](https://twitter.com/search?q=%24ETH\&src=cashtag\_click) back from the NFT contract. But what if refundAddress is a minter holding one of the NFTs?
+But, check the refund function: Minter calls this func to return the NFTs he minted to the `refundAddress`(an address set and controlled by dev) then gets the corresponding amount of [$ETH](https://twitter.com/search?q=%24ETH\&src=cashtag\_click) back from the NFT contract. But what if `refundAddress` is a minter holding one of the NFTs?
 
 ```
 function refund(uint256 [] calldata tokenIds) external {
@@ -47,5 +48,5 @@ function refund(uint256 [] calldata tokenIds) external {
 }
 ```
 
-A scam dev will set a refundAddress, then mint an NFT with this refundAddress. Next step, he calls refund(). Because the NFT will always return to refundAddress, he still possesses that NFT while collecting some amount of Eth. He can do it multiple times until all funds run out.
+A scam dev will set a refundAddress, then mint an NFT with this `refundAddress`. Next step, he calls `refund()`. Because the NFT will always return to refundAddress, he still possesses that NFT while collecting some amount of Eth. He can do it multiple times until all funds run out.
 
