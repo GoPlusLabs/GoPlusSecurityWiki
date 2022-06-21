@@ -2,14 +2,20 @@
 
 ## 📗 Intro
 
-* [Introduction](README.md)
-* [Test](intro/test.md)
+* [Hello, dark forest!](README.md)
 
 ## 👿 Vulnerabilities Cases
 
+* [Client Implementation](vulnerabilities-cases/client-implementation.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
 * [Phishing](attack-vectors/phishing.md)
 * [NFT](attack-vectors/nft.md)
   * [ERC721R Refund](vulnerabilities-cases/nft/erc721r-refund.md)
-* [Cryptography](attack-vectors/cryptography.md)
+  * [Sleepminting](vulnerabilities-cases/nft/sleepminting.md)
+* [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
+  * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
+    * [ECDSA](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
+    * [EdDSA](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
+* [Zero-knowledge Proof](vulnerabilities-cases/zero-knowledge-proof/README.md)
+  * [G-addition](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)

@@ -1,7 +1,11 @@
----
-description: A gentle introduction
----
+# Hello, dark forest!
 
-# Introduction
+Go+ Encyclopedia provides professional blockchain and applied cryptography mechanisms and security analysis.
 
-Constructing...
+Specifically, here you can find:
+
+* Basic cryptography and blockchain technical knowledge
+* Vulnerabilities cases, both from ancient times and the latest ones
+* ...
+* ...
+* ...
