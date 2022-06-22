@@ -2,7 +2,7 @@
 
 ## 📗 Intro
 
-* [Hello, Dark Forest!](README.md)
+* [Hello, blockchain!](README.md)
 
 ## 👿 Vulnerabilities Cases
 
@@ -17,7 +17,7 @@
   * [Fake E-mail Address](vulnerabilities-cases/phishing/fake-e-mail-address.md)
   * [Websites](vulnerabilities-cases/phishing/websites.md)
 * [NFT](attack-vectors/nft.md)
-  * [ERC721R Refund](vulnerabilities-cases/nft/erc721r-refund.md)
+  * [ERC721R Bug](vulnerabilities-cases/nft/erc721r-bug.md)
   * [Sleepminting](vulnerabilities-cases/nft/sleepminting.md)
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
   * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
