@@ -3,7 +3,7 @@ cover: ../../.gitbook/assets/xafAmLjc.jpeg
 coverY: 0
 ---
 
-# ERC721R Refund
+# ERC721R Bug
 
 ## Abstract
 
