@@ -52,7 +52,7 @@ Change public keys of Keepers. Because it has `onlyOwner` modifier, it can only 
 
 
 
-#### changeBookKeeper()
+#### **changeBookKeeper()**
 
 ```
 function changeBookKeeper(
@@ -118,7 +118,7 @@ An internal function called by **verifyHeaderAndExecuteTx()** to execute speific
 
 1. The hacker constructed sophisticated parameters for Keeper replacement.
 2. The hacker called `crossChain()` from other chains to submit cross-chain transactions, which are not normal transactions but for Keeper replacement.
-3. Replayers of Poly Network replay those transactions to `ECCD` on the destination chain.
+3. Relayers of Poly Network relayed those transactions to `ECCD` on the destination chain.
 4. `ECCM` verified and executed malicious cross-chain transactions from `ECCD`.
 5. Move funds as he wanted. Attack completed.&#x20;
 
@@ -172,22 +172,20 @@ There are three paramters in the codesnipet:
 
 `abi.encode(_args, _fromContractAddr, _fromChainId)`
 
-But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Yes, they will just be omitted if you make up calls this way.&#x20;
+But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Conditionally, yes, they will just be omitted if you make up calls this way.&#x20;
 
-The hacker needed to pass arguments to fill `_args` with his address.
-
-
+The hacker passed his address `0xA87fB85A93Ca072Cd4e5F0D4f178Bc831Df8a00B` to `_args`, which will be passed to `putCurEpochConPubKeyBytes(bytes memory curEpochPkBytes)` to replace Keepers address.
 
 Construction of parameters done.
 
 ## Summary
 
-* **Permission control matters**:`onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check in a more holistic picture to enforce solid permission controls.
+* **Permission control matters**: In a complex project, `onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check with a more holistic picture to enforce solid permission controls.
 * **Beware hash collision**: **** The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
 
 ## Aftermath
 
-Report from [Kudelski Secruity](https://research.kudelskisecurity.com):
+Report from [Kudelski](https://research.kudelskisecurity.com)
 
 > Poly Network asked the hacker to return the funds. The security company Slowmist published findings on the alleged hacker, claiming that the hacker’s identity had been exposed and that the group had access to the hacker’s email and IP address. According to Slowmist, the hacker was able to take advantage of a relatively unknown crypto exchange in Asia and they claimed to have a lot of information about the attacker.&#x20;
 >
