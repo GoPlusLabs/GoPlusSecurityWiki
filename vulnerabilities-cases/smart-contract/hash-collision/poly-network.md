@@ -1,3 +1,8 @@
+---
+cover: ../../../.gitbook/assets/polynetwork.jpg
+coverY: 0
+---
+
 # Poly Network
 
 ## Abstract
