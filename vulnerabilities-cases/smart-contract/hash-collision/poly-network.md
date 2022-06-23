@@ -32,8 +32,6 @@ Then in `ECCM`, the validity of cross-chain transactions will be checked and per
 
 
 
-Core function related in this incident:
-
 **putCurEpochConPubKeyBytes()**
 
 ```
@@ -54,8 +52,6 @@ Change public keys of Keepers. Because it has `onlyOwner` modifier, it can only 
 
 
 
-Core functions related in this incident:
-
 #### changeBookKeeper()
 
 ```
@@ -66,7 +62,7 @@ function changeBookKeeper(
     whenNotPaused public returns(bool) {
 ```
 
-The normal method for changing Keepers. Hacker was not able to call this one since it required Keepers' signatures.
+The ordinary and legal method for changing Keepers. Hacker was not able to call this one as it required Keepers' signatures.
 
 
 
@@ -96,7 +92,7 @@ function verifyHeaderAndExecuteTx(
         bytes memory headerSig) {
 ```
 
-Verify Poly chain header, proof, signatures of Keepers and execute the cross-chain tx from Poly chain to Ethereum.
+Verify Poly chain header, proof, and signatures of Keepers and execute the cross-chain tx from Poly chain to Ethereum.
 
 
 
@@ -128,7 +124,9 @@ An internal function called by **verifyHeaderAndExecuteTx()** to execute speific
 
 
 
-### Construction of Paramters
+Except for Step1, the remainings are very ordinary operations, thus here we only delve into the details of Step1, malicious parameters.
+
+### Construction of Malicious Parameters
 
 Let's take a look at how does `_executeCrossChainTx()` execute calls to other contracts:
 
@@ -168,36 +166,34 @@ We don't know what exactly he used as `RANDOM_STRING` since there are so many th
 
 
 
-``
+**Omitted arguments**
+
+There are three paramters in the codesnipet:
+
+`abi.encode(_args, _fromContractAddr, _fromChainId)`
+
+But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Yes, they will just be omitted if you make up calls this way.&#x20;
+
+The hacker needed to pass arguments to fill `_args` with his address.
 
 
 
-`parameters` = `abi.encode(_args, _fromContractAddr, _fromChainId)`
+Construction of parameters done.
 
+## Summary
 
+* **Permission control matters**:`onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check in a more holistic picture to enforce solid permission controls.
+* **Beware hash collision**: **** The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
 
+## Aftermath
 
+Report from [Kudelski Secruity](https://research.kudelskisecurity.com):
 
-
-
-
-
-
-
-
-
-
-
-\
-it is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
-
-\
-\
-
-
-\
-\
-
+> Poly Network asked the hacker to return the funds. The security company Slowmist published findings on the alleged hacker, claiming that the hacker’s identity had been exposed and that the group had access to the hacker’s email and IP address. According to Slowmist, the hacker was able to take advantage of a relatively unknown crypto exchange in Asia and they claimed to have a lot of information about the attacker.&#x20;
+>
+> Whether this is true or not, the hacker started returning funds to Poly on Wednesday. By August 11th 15:00 UTC nearly half worth of tokens have been returned, and the hacker claims to be ready to return more in exchange for the unfreeze of the Tether tokens. A second message embedded in a transaction reads: **“IT’S ALREADY A LEGEND TO WIN SO MUCH FORTUNE. IT WILL BE AN ETERNAL LEGEND TO SAVE THE WORLD. I MADE THE DECISION, NO MORE DAO”**.&#x20;
+>
+> While this story develops, it is not superfluous to remind that “blockchain” is not synonymous with “security”. It is very important to audit the security of your applications, including smart contracts.
 
 ## References
 
