@@ -35,8 +35,6 @@ Then in `ECCM`, the validity of cross-chain transactions will be checked and per
 * Update and store data of all cross-chain transactions.
 * Add, change and store public keys of Keepers, who have the ability to move funds or perform other critical operations(eg. sign and submit cross-chain transactions witnessed from other chains).
 
-
-
 **putCurEpochConPubKeyBytes()**
 
 ```
@@ -55,8 +53,6 @@ Change public keys of Keepers. Because it has `onlyOwner` modifier, it can only 
 * Verify Poly chain header and proof, execute the cross-chain tx from Poly chain to Ethereum.
 * Owner of the `ECCD` contract.
 
-
-
 #### **changeBookKeeper()**
 
 ```
@@ -68,8 +64,6 @@ function changeBookKeeper(
 ```
 
 The ordinary and legal method for changing Keepers. Hacker was not able to call this one as it required Keepers' signatures.
-
-
 
 **crossChain()**
 
@@ -84,8 +78,6 @@ function crossChain(
 
 This function was used for submitting a cross-chain tx on a source chain. Its info will be relayed to the `ECCD` contract on the destination chain by Keepers.
 
-
-
 **verifyHeaderAndExecuteTx()**
 
 ```
@@ -98,8 +90,6 @@ function verifyHeaderAndExecuteTx(
 ```
 
 Verify Poly chain header, proof, and signatures of Keepers and execute the cross-chain tx from Poly chain to Ethereum.
-
-
 
 **\_executeCrossChainTx()**
 
@@ -115,8 +105,6 @@ function _executeCrossChainTx(
 
 An internal function called by **verifyHeaderAndExecuteTx()** to execute speificied operations.
 
-
-
 ## Attack Vectors & Details
 
 ### Holistic View
@@ -125,9 +113,7 @@ An internal function called by **verifyHeaderAndExecuteTx()** to execute speific
 2. The hacker called `crossChain()` from other chains to submit cross-chain transactions, which are not normal transactions but for Keeper replacement.
 3. Relayers of Poly Network relayed those transactions to `ECCD` on the destination chain.
 4. `ECCM` verified and executed malicious cross-chain transactions from `ECCD`.
-5. Move funds as he wanted. Attack completed.&#x20;
-
-
+5. Move funds as he wanted. Attack completed.
 
 Except for Step1, the remainings are very ordinary operations, thus here we only delve into the details of Step1, malicious parameters.
 
@@ -144,11 +130,9 @@ Let's take a look at how does `_executeCrossChainTx()` execute calls to other co
 
 Basically it can be interpreted as `ContractAddress.call(functionSelector, paramters).`
 
-
-
 **Hash collision of function selector**
 
-`functionSelector` = `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`. With this `bytes4` typecasting, only the first 4 bytes were saved and Solidity function selector are 4 bytes long.&#x20;
+`functionSelector` = `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`. With this `bytes4` typecasting, only the first 4 bytes were saved and Solidity function selector are 4 bytes long.
 
 But here's how `abi.encodePacked()` works from Solidity Docs:
 
@@ -158,18 +142,14 @@ Namely, in `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))
 
 The signature of `putCurEpochConPubKeyBytes(bytes)` , which updates the public keys of Keepers, is `0x41973cd9`. You can calculate it by `ethers.utils.id ('putCurEpochConPubKeyBytes(bytes)').slice(0, 10)` or various online tools.
 
-
-
 The attacker brute-forced `RANDOM_STRING` to match the following equation:
 
 `'0x41973cd9' == ethers.utils.id ('RANDOM_STRING(bytes,bytes,uint64)').slice(0, 10)`.
 
-We don't know what exactly he used as `RANDOM_STRING` since there are so many that meet the requirement above, but there are some valid possibilities:
+There are many `RANDOM_STRING` that meet the requirement above, eg. :
 
 * `f1121318093`
 * `func10487987874260605968`
-
-
 
 **Omitted arguments**
 
@@ -177,7 +157,7 @@ There are three paramters in the codesnipet:
 
 `abi.encode(_args, _fromContractAddr, _fromChainId)`
 
-But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Conditionally, yes, they will just be omitted if you make up calls this way.&#x20;
+But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Conditionally, yes, they will just be omitted if you make up calls this way.
 
 The hacker passed his address `0xA87fB85A93Ca072Cd4e5F0D4f178Bc831Df8a00B` to `_args`, which will be passed to `putCurEpochConPubKeyBytes(bytes memory curEpochPkBytes)` to replace Keepers address.
 
@@ -186,15 +166,15 @@ Construction of parameters done.
 ## Summary
 
 * **Permission control matters**: In a complex project, `onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check with a more holistic picture to enforce solid permission controls.
-* **Beware hash collision**: **** The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
+* **Beware hash collision**: \*\*\*\* The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
 
 ## Aftermath
 
 Report from [Kudelski](https://research.kudelskisecurity.com)
 
-> Poly Network asked the hacker to return the funds. The security company Slowmist published findings on the alleged hacker, claiming that the hacker’s identity had been exposed and that the group had access to the hacker’s email and IP address. According to Slowmist, the hacker was able to take advantage of a relatively unknown crypto exchange in Asia and they claimed to have a lot of information about the attacker.&#x20;
+> Poly Network asked the hacker to return the funds. The security company Slowmist published findings on the alleged hacker, claiming that the hacker’s identity had been exposed and that the group had access to the hacker’s email and IP address. According to Slowmist, the hacker was able to take advantage of a relatively unknown crypto exchange in Asia and they claimed to have a lot of information about the attacker.
 >
-> Whether this is true or not, the hacker started returning funds to Poly on Wednesday. By August 11th 15:00 UTC nearly half worth of tokens have been returned, and the hacker claims to be ready to return more in exchange for the unfreeze of the Tether tokens. A second message embedded in a transaction reads: **“IT’S ALREADY A LEGEND TO WIN SO MUCH FORTUNE. IT WILL BE AN ETERNAL LEGEND TO SAVE THE WORLD. I MADE THE DECISION, NO MORE DAO”**.&#x20;
+> Whether this is true or not, the hacker started returning funds to Poly on Wednesday. By August 11th 15:00 UTC nearly half worth of tokens have been returned, and the hacker claims to be ready to return more in exchange for the unfreeze of the Tether tokens. A second message embedded in a transaction reads: **“IT’S ALREADY A LEGEND TO WIN SO MUCH FORTUNE. IT WILL BE AN ETERNAL LEGEND TO SAVE THE WORLD. I MADE THE DECISION, NO MORE DAO”**.
 >
 > While this story develops, it is not superfluous to remind that “blockchain” is not synonymous with “security”. It is very important to audit the security of your applications, including smart contracts.
 
