@@ -21,7 +21,7 @@
   * [Websites](vulnerabilities-cases/phishing/websites.md)
 * [NFT](attack-vectors/nft.md)
   * [ERC721R Bug](vulnerabilities-cases/nft/erc721r-refund.md)
-  * [Sleepminting](vulnerabilities-cases/nft/sleepminting.md)
+  * [Sleep Minting](vulnerabilities-cases/nft/sleepminting.md)
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
   * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
     * [ECDSA](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
