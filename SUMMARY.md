@@ -9,6 +9,7 @@
 * [Blockchain Network](vulnerabilities-cases/blockchain-network/README.md)
   * [Eclipse Attack](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
 * [Smart Contract](vulnerabilities-cases/smart-contract/README.md)
+  * [Symmetry Breaking](vulnerabilities-cases/smart-contract/symmetry-breaking.md)
   * [Hash Collision](vulnerabilities-cases/smart-contract/hash-collision/README.md)
     * [Poly Network](vulnerabilities-cases/smart-contract/hash-collision/poly-network.md)
 * [User Client](vulnerabilities-cases/user-client/README.md)
