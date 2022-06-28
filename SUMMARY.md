@@ -33,3 +33,7 @@
     * [EdDSA](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
 * [Zero-knowledge Proof](vulnerabilities-cases/zero-knowledge-proof/README.md)
   * [Field Arithmetic](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)
+
+## 🏝 Miscellaneous
+
+* [Tools](miscellaneous/tools.md)
