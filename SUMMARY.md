@@ -12,6 +12,7 @@
   * [Hash Collision](vulnerabilities-cases/smart-contract/hash-collision/README.md)
     * [Poly Network](vulnerabilities-cases/smart-contract/hash-collision/poly-network.md)
 * [User Client](vulnerabilities-cases/user-client/README.md)
+  * [Fake User Interface](vulnerabilities-cases/user-client/fake-user-interface.md)
   * [Copy & Paste Private Keys](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
   * [Metamask phrase leakage](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
