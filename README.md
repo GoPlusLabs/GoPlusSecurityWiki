@@ -1,3 +1,8 @@
+---
+cover: .gitbook/assets/home_cover.jpg
+coverY: 0
+---
+
 # Hello, blockchain!
 
 Go+ Encyclopedia provides professional blockchain and applied cryptography mechanisms and security analysis.
