@@ -1,9 +1,3 @@
----
-cover: >-
-  https://images.unsplash.com/photo-1456428746267-a1756408f782?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw5fHxibG9ja2NoYWlufGVufDB8fHx8MTY1NjQwNDMxNA&ixlib=rb-1.2.1&q=80
-coverY: 0
----
-
 # Hello, blockchain!
 
 Go+ Encyclopedia provides professional blockchain and applied cryptography mechanisms and security analysis.

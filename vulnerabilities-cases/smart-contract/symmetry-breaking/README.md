@@ -1,7 +1,7 @@
 ---
 cover: >-
-  https://images.unsplash.com/photo-1605516152960-24c30bf2a651?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHwyfHxzeW1tZXRyeXxlbnwwfHx8fDE2NTY0MDQwNTM&ixlib=rb-1.2.1&q=80
-coverY: -776.9891225525746
+  https://images.unsplash.com/photo-1592813790189-2a42ebd9a863?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw1fHxzeW1tZXRyeXxlbnwwfHx8fDE2NTY0MDQwNTM&ixlib=rb-1.2.1&q=80
+coverY: 0
 ---
 
 # Symmetry Breaking
