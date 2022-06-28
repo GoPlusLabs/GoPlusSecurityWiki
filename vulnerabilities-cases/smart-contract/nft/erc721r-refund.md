@@ -1,5 +1,5 @@
 ---
-cover: ../../.gitbook/assets/xafAmLjc.jpeg
+cover: ../../../.gitbook/assets/xafAmLjc.jpeg
 coverY: 0
 ---
 
@@ -49,4 +49,3 @@ function refund(uint256 [] calldata tokenIds) external {
 ```
 
 A scam dev will set a refundAddress, then mint an NFT with this `refundAddress`. Next step, he calls `refund()`. Because the NFT will always return to refundAddress, he still possesses that NFT while collecting some amount of Eth. He can do it multiple times until all funds run out.
-
