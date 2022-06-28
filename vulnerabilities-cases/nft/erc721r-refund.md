@@ -1,5 +1,5 @@
 ---
-cover: ../../../.gitbook/assets/xafAmLjc.jpeg
+cover: ../../.gitbook/assets/xafAmLjc.jpeg
 coverY: 0
 ---
 

@@ -1,3 +1,9 @@
+---
+cover: >-
+  https://images.unsplash.com/photo-1519832064761-bbc1d76d4ef8?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHwxfHxpY2ViZXJnfGVufDB8fHx8MTY1NjQwNDE3NQ&ixlib=rb-1.2.1&q=80
+coverY: 371.64612037708486
+---
+
 # Hash Collision
 
 ## Definition
