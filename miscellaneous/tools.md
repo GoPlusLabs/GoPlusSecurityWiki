@@ -8,6 +8,12 @@ Ethereum 4-byte function signatures database
 
 ![](<../.gitbook/assets/image (1).png>)
 
+### [Ethereum Signature Database](https://sig.eth.samczsun.com)
+
+Another function sigatures database by [@samszsun](https://twitter.com/samczsun/status/1523432840561520640)
+
+![](<../.gitbook/assets/image (5).png>)
+
 ### [MistTrack](https://misttrack.io)
 
 A Crypto Tracking and Compliance Platform for Everyone
