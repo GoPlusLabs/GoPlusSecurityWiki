@@ -2,7 +2,7 @@
 
 ## 📗 Intro
 
-* [Hello, blockchain!](README.md)
+* [Hello, Web3!](README.md)
 
 ## 👿 Vulnerabilities Cases
 
