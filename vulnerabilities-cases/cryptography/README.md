@@ -6,3 +6,6 @@ coverY: 389.6040609137056
 
 # Basic Cryptography
 
+Cryptography is the foundation of blockchain technology.
+
+While we've had solid proof of the safety of existing well-known cryptographic algorithms, there are still some vulnerable implementations which corrupt the soundness of these safe schemes.

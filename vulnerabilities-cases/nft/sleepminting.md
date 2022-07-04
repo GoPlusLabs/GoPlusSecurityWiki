@@ -1,3 +1,9 @@
+---
+cover: >-
+  https://images.unsplash.com/photo-1492684223066-81342ee5ff30?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw0fHxldmVudHxlbnwwfHx8fDE2NTY5MDcyODQ&ixlib=rb-1.2.1&q=80
+coverY: 0
+---
+
 # Sleep Minting
 
 ## Abstract
@@ -11,8 +17,6 @@ Most dApps or websites are using Event logs of Mint & Transfer solely when analy
 `event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);`
 
 The front end just listens to this event emitted from blockchain, and displays to users that some NFT was transferred from/to some addresses according to this event log.
-
-
 
 The following is how `transferFrom()` works:
 
@@ -39,8 +43,6 @@ The following is how `transferFrom()` works:
     emit Transfer(from, _to, _tokenId);
   }
 ```
-
-
 
 Now we add a private address in the NFT721 contract,
 
