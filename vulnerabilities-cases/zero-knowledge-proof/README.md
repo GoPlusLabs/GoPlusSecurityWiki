@@ -13,6 +13,11 @@ In a ZKP implementation, three core principles of ZKP should be achieved to fulf
 * All invalid proofs must always be rejected
 * Valid proofs should not be faked, modified or replayed
 
+#### Examples
+
+* Constrains are comprimised
+* Proving keys are generated insecurely or&#x20;
+
 ### Zero-knowledge
 
 * Witness information shouldn't leak in any other place, eg. in a proof
