@@ -76,7 +76,7 @@ Unfortunately, the reason this step is viable is also caused by the vulnerabilit
 \
 `CREATE` : `keccak256(rlp.encode(deployingAddress, nonce))[12:]`
 
-`CREATE2` : `keccak256(0xff ++ deployingAddr ++ salt ++ keccak256(bytecode))[12:]`
+`CREATE2` : `keccak256(0xff + deployingAddr + salt + keccak256(bytecode))[12:]`
 
 In `CREATE2` it takes additional parameters thus has the ability to prevent different `msg.sender` generating same contract address.
 
