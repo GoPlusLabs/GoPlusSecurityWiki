@@ -71,6 +71,13 @@ The solution is simple. Just restrict the inputs should be less than `q` (`snark
     }
 ```
 
+## References
+
+[https://paper.seebug.org/995/](https://paper.seebug.org/995/)
+
+[https://ethereum.github.io/yellowpaper/paper.pdf](https://ethereum.github.io/yellowpaper/paper.pdf)
+
+[https://ecips.ethereumclassic.org/ECIPs/ecip-1025](https://ecips.ethereumclassic.org/ECIPs/ecip-1025)
 
 
-Point coordinates `input[i]` should < G, or cyclic operation will be exploited.
+
