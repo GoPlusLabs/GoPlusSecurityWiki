@@ -30,7 +30,7 @@
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
   * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
     * [ECDSA](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
-    * [EdDSA](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
+    * [Ed25519](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
 * [Zero-knowledge Proof](vulnerabilities-cases/zero-knowledge-proof/README.md)
   * [Aliasing Attack](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)
 
