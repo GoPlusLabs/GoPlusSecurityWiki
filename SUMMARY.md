@@ -29,7 +29,7 @@
   * [Websites](vulnerabilities-cases/phishing/websites.md)
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
   * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
-    * [ECDSA](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
+    * [ECDSA random numbers](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
     * [Ed25519](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
 * [Zero-knowledge Proof](vulnerabilities-cases/zero-knowledge-proof/README.md)
   * [Aliasing Attack](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)

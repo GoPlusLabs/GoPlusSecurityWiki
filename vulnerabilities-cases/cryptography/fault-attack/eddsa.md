@@ -1,3 +1,9 @@
+---
+cover: >-
+  https://images.unsplash.com/photo-1562065540-efa93744ed71?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw0fHxjdXJ2ZXxlbnwwfHx8fDE2NTcwOTgzNjA&ixlib=rb-1.2.1&q=80
+coverY: 0
+---
+
 # Ed25519
 
 ## Abstract
