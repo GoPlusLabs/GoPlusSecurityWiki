@@ -3,6 +3,7 @@
 ## 📗 Intro
 
 * [Hello, Web3!](README.md)
+* [Recent Security Incidents](intro/recent-security-incidents.md)
 
 ## 👿 Vulnerabilities Cases
 
