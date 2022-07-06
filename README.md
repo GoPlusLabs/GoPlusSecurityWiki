@@ -5,6 +5,8 @@ coverY: 0
 
 # Hello, Web3!
 
+## Intro
+
 This is a Web3 Encyclopedia that provides professional blockchain and applied cryptography mechanisms and security analysis.
 
 Specifically, here you can find:
@@ -15,8 +17,12 @@ Specifically, here you can find:
 
 
 
+## Contribution
+
 Welcome to contribute to this encyclopedia, you can:
 
-* Submit PR request to the [Github Repo](https://github.com/GoPlusLabs/GoPlusSecurityWiki) which connects here.
-* Or, contact us in [Discord](https://discord.com/invite/5cvSsaT8N5) to grant editor permission on Gitbook.
+* [Grant editor permission](https://app.gitbook.com/invite/RjhuA9xzfVwGPIwlqWfH/RThqvYCmGRnv4OI6oCB7) and edit in Gitbook (Recommended)
+* Or, submit PR to the [Github Repo](https://github.com/GoPlusLabs/GoPlusSecurityWiki) which connects here. This requires some knowledge of Gitbook structure.
+
+We'll list all major contributors under this page and may provide rewards in token/NFT/etc. in the future.
 
