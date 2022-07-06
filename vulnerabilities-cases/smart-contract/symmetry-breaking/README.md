@@ -12,7 +12,7 @@ For a pair of symmetrical actions, some restrictions are missing on one side thu
 
 ## Examples of Symmetry
 
-* Deposit - Withdraw
+* Deposit(Start Earn) - Withdraw(Finish Earn)
 * Stake - Unstake
 * Check-in - Check-out&#x20;
 

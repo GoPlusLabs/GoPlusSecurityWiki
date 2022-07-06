@@ -1,9 +1,3 @@
----
-cover: >-
-  https://images.unsplash.com/photo-1460552181709-52ca8cb46336?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHw0fHxpZGVudGljYWx8ZW58MHx8fHwxNjU3MDk4OTgy&ixlib=rb-1.2.1&q=80
-coverY: -231.81454836131098
----
-
 # Aliasing Attack
 
 ## Abstract
