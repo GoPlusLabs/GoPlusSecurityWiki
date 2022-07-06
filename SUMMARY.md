@@ -32,7 +32,7 @@
     * [ECDSA](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
     * [EdDSA](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
 * [Zero-knowledge Proof](vulnerabilities-cases/zero-knowledge-proof/README.md)
-  * [Input Aliasing](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)
+  * [Aliasing Attack](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)
 
 ## 🏝 Miscellaneous
 

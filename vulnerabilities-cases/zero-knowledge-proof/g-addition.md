@@ -1,4 +1,4 @@
-# Input Aliasing
+# Aliasing Attack
 
 ## Abstract
 
@@ -16,33 +16,56 @@ Here are some examples:
 
 [https://github.com/semaphore-protocol/semaphore/pull/96/](https://github.com/semaphore-protocol/semaphore/pull/96/)
 
-## Cryptography Background
+## Background
 
 To reduce gas required by some ZKP schemes, Ethereum defined two precompile contracts for addition and multiplication operations of the elliptic curve **alt\_bn128** in [EIP-196](https://eips.ethereum.org/EIPS/eip-196).
 
 Curve **alt\_bn128** is defined as:
 
 $$
-(x,y)\in (\mathbb F_p)^2\space\space |\space \space \lbrace y^2 ≡ x^3 + 3(mod \, P)\rbrace \cup \lbrace 0 \rbrace
+(x,y)\in (\mathbb F_p)^2\space\space |\space \space \lbrace y^2 ≡ x^3 + 3(mod \, p)\rbrace \cup \lbrace (0,0) \rbrace
 $$
 
 $$
 \\p= 21888242871839275222246405745257275088696311157297823662689037894645226208583
 $$
 
+In the finite field `F_p`, there is a cyclic subgroup of order `q` based on generator `P1(1,2)`:
+
+$$
+q = 21888242871839275222246405745257275088548364400416034343698204186575808495617
+$$
+
+In that cyclic subgroup, there is
+
+$$
+x \in \mathbb F_q\, ,n \in \N \, | \, x+nq≡x(mod\,p)
+$$
+
+Namely, we can regard `q` as zero in the finite field operation, adding any multiples of `q` to the same point always return itself.
+
+Since we usually use `uint256` in related calculations, which has a maximum `M`, there exist `N` aliases for a given input argument `A`:
+
+$$
+N =⌊(M-A)/q⌋
+$$
+
+That is to say, if `A` is the **nullifier**, you can construct at most `N` aliases, they are different natural numbers but will output identical results in the cyclic group. Hence, the double spending proof is invalid here, even can be abused to triple or quadruple spending.
 
 
 
+This kind of attack was first revealed in the privacy layer project **Semaphore,** and its course can be traced back to 2017 when **Christian Reitwiessner** wrote such an unsafe example for implementation. Unfortunately many zkSNARKS libs like `snarkjs` and `ethsnarks` followed this example.
 
+## Solution
 
+The solution is simple. Just restrict the inputs should be less than `q` (`snark_scalar_field`).
 
 ```
- uint256 snark_scalar_field = 21888242871839275222246405745257275088548364400416034343698204186575808495617;
     VerifyingKey memory vk = verifyingKey();
     require(input.length + 1 == vk.IC.length, "verifier-bad-input");
     Pairing.G1Point memory vk_x = Pairing.G1Point(0, 0);
     for (uint256 i = 0; i < input.length; i++) {
-       // Check for field arithmetic
+       // Check for field arithmetic less than q
       require(input[i] < snark_scalar_field, "verifier-gte-snark-scalar-field");
       vk_x = Pairing.addition(vk_x, Pairing.scalar_mul(vk.IC[i + 1], input[i]));
     }
