@@ -14,3 +14,5 @@ This has significant security risks under clipboard monitors on different device
 
 ## Android
 
+## Browser
+

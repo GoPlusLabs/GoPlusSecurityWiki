@@ -21,7 +21,7 @@ Specifically, here you can find:
 
 Welcome to contribute to this encyclopedia, you can:
 
-* [Grant editor permission](https://app.gitbook.com/invite/RjhuA9xzfVwGPIwlqWfH/RThqvYCmGRnv4OI6oCB7) and edit in Gitbook (Recommended). Change requests will be reviewed first. You can also use change request as draft box by marking it as `unfinished`, which we won't review though it will appear in the Change Requests line.
+* **Recommended -** [Grant editor permission](https://app.gitbook.com/invite/RjhuA9xzfVwGPIwlqWfH/RThqvYCmGRnv4OI6oCB7) and edit in Gitbook. Change requests will be reviewed first.&#x20;
 * Or, submit PR to the [Github Repo](https://github.com/GoPlusLabs/GoPlusSecurityWiki) which connects here. This requires some knowledge of Gitbook structure.
 
 We'll list all major contributors under this page and may provide rewards in token/NFT/etc. in the future.
