@@ -10,7 +10,7 @@ Fake UI tries to mimic critical software like a wallet, then guide user to enter
 
 1. After click Connect Wallet, the fake UI poped up.
 
-![Fake UI](<../../.gitbook/assets/scam\_Mac (1).png>)
+![Fake UI](../../.gitbook/assets/scam\_Mac.png)
 
 ![The real one has a title bar. Though the scam website can also make it look like this, but still we have other mesaure to identify.](../../.gitbook/assets/scam\_design\_mac.jpg)
 

@@ -7,13 +7,13 @@ coverY: 0
 
 ## Abstract
 
-| Status       | Fixed                                                                    |   |
-| ------------ | ------------------------------------------------------------------------ | - |
-| Type         | Contract                                                                 |   |
-| Date         | Apr 12, 2022                                                             |   |
-| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |   |
-| Direct Loss  | None. It was reported in the early stage.                                |   |
-| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |   |
+| Stauts       | Fixed                                                                    |
+| ------------ | ------------------------------------------------------------------------ |
+| Type         | Contract                                                                 |
+| Date         | Apr 12, 2022                                                             |
+| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |
+| Direct Loss  | None. It was reported in the early stage.                                |
+| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |
 
 ## What is NFT721R?
 
@@ -49,4 +49,3 @@ function refund(uint256 [] calldata tokenIds) external {
 ```
 
 A scam dev will set a refundAddress, then mint an NFT with this `refundAddress`. Next step, he calls `refund()`. Because the NFT will always return to refundAddress, he still possesses that NFT while collecting some amount of Eth. He can do it multiple times until all funds run out.
-
