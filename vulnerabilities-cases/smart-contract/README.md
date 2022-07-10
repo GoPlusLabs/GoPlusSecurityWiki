@@ -4,5 +4,5 @@ cover: >-
 coverY: 0
 ---
 
-# Smart Contract
+# 智能合约
 

@@ -15,10 +15,9 @@ coverY: 214.8803480783176
 * **交易签名重放：** 将一笔交易的[**原始签名**](./#获取交易原始签名)提交至一条链上。如果是同一条链则该该交易会失败，因为`nonce`不允许此类行为。而如果是跨链重放，则取决于原交易和目标链共识系统是否使用了包含`chainId`的抗跨链重放的EIP-155.
 * **交易data重放:** 此处`data`就是一笔交易中的`data`字段。通过从其他交易中复制data，有可能对不严谨的身份/成员验证合约进行攻击.
 
-In transaction signature replay, the transaction looks like it was sent by the original sender, but actually it's the hack who initiated the transaction, but we barely have measures to distinguish.
 在交易签名重放中，该交易看起来是由原交易发送者发送的，但实际上是由黑客发送的，而我们几乎没有任何手段能做区分。
 
-## Other Details
+## 其他细节
 
 ### 获取交易原始签名
 
@@ -43,10 +42,11 @@ web3.eth.getTransaction('0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c
 }
 ```
 
-#### From Etherscan.io
+#### 从Etherscan.io获取
 
-Some transaction -> `...` Icon -> Get Raw Tx Hex.
+某笔交易 -> `...` 图标 -> Get Raw Tx Hex.
 
-Note: The result is in unserialised format(RLP encoded). You need to convert it to human readable format with some tools like [https://flightwallet.github.io/decode-eth-tx/](https://flightwallet.github.io/decode-eth-tx/).
+注意：该结果为序列化后（RLP编码）的格式。需要用某些工具将其转换为人类可读格式
+[https://flightwallet.github.io/decode-eth-tx/](https://flightwallet.github.io/decode-eth-tx/).
 
 ![](<../../.gitbook/assets/image (2).png>)

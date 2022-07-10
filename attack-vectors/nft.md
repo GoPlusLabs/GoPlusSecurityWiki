@@ -4,6 +4,6 @@ cover: >-
 coverY: 0
 ---
 
-# General NFT
+# NFT
 
-A list of general NFT issues.
+常见NFT问题。
