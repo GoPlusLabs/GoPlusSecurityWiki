@@ -27,7 +27,6 @@
 * [Phishing](vulnerabilities-cases/phishing/README.md)
   * [Fake User Interface](vulnerabilities-cases/user-client/fake-user-interface.md)
   * [Fake E-mail Address](vulnerabilities-cases/phishing/fake-e-mail-address.md)
-  * [Websites](vulnerabilities-cases/phishing/websites.md)
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
   * [Fault Attack](vulnerabilities-cases/cryptography/fault-attack/README.md)
     * [ECDSA random numbers](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
