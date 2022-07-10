@@ -166,7 +166,7 @@ Construction of parameters done.
 ## Summary
 
 * **Permission control matters**: In a complex project, `onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check with a more holistic picture to enforce solid permission controls.
-* **Beware hash collision**: \*\*\*\* The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
+* **Beware hash collision**: The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`, and avoid `abi.encodePacked()`.
 
 ## Aftermath
 
