@@ -14,13 +14,13 @@ Poly Network是个跨链协议。其中的守卫具有移动资金的能力。�
 * 可调用任意合约，没有足够的检查或限制
 * `abi.encodePacked`组合的函数签名的哈希碰撞
 
-| 状态       | 已修复                                                                                            |   |
-| ------------ | ------------------------------------------------------------------------------------------------ | - |
-| 类型         | 合约，跨链                                                                            |   |
-| 日期         | August 10, 2021                                                                                  |   |
-| 来源       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |   |
-| 直接损失  | $610 million                                                                                     |   |
-| 项目仓库 | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |   |
+| 状态       | 已修复                                                                                            |  
+| ------------ | ------------------------------------------------------------------------------------------------ | 
+| 类型         | 合约，跨链                                                                            |  
+| 日期         | August 10, 2021                                                                                  |   
+| 来源       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |   
+| 直接损失  | $610 million                                                                                     |   
+| 项目仓库 | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |   
 
 ## 合约结构
 

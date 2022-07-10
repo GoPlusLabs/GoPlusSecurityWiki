@@ -4,18 +4,18 @@ cover: >-
 coverY: 0
 ---
 
-# Symmetry Breaking
+# 对称性破缺
 
-## Definition
+## 定义
 
-For a pair of symmetrical actions, some restrictions are missing on one side thus the security symmetry is broken, which can be exploited potentially.
+对于一组有对称性的行为，某些限制条件在某一端遗失了，造成了安全对称性的破缺，可能会被攻击者利用。
 
-## Examples of Symmetry
+## 对称性示例
 
-* Deposit(Start Earn) - Withdraw(Finish Earn)
-* Stake - Unstake
-* Check-in - Check-out&#x20;
+* 充值（开始计息）- 提款（结束计息）
+* 质押 - 解押
+* 入住 - 退房&#x20;
 
-### Symmetry Breaking
+### 对称性破缺
 
-In these paired actions, eg. Stake - Unstake, if you missed some checks while unstaking(eg., terminate staking rewards), the system becomes **asymmetrical** immediately, i.e. lots of rewards are distributed to the people who are already left and not qualified for rewards.
+在这些成对的行为中，如质押-解押，如果在解押时忘记了一些检查（如，停止质押奖励），则系统会立马变得**不对称**，也就是说有大量的奖励会分配给那些已经退出质押的人，他们并没有资格获得奖励。
