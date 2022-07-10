@@ -46,6 +46,6 @@ web3.eth.getTransaction('0x9fc76417374aa880d4449a1f7f31ec597f00b1f6f3dd2d66f4c9c
 
 Some transaction -> `...` Icon -> Get Raw Tx Hex.
 
-Note: The result is in unserialised format(RLP encoded). You need to convert it to human readable format with some tools like [https://flightwallet.github.io/decode-eth-tx/](https://flightwallet.github.io/decode-eth-tx/).
+Note: The result is in serialised format(RLP encoded). You need to convert it to human readable format with some tools like [https://flightwallet.github.io/decode-eth-tx/](https://flightwallet.github.io/decode-eth-tx/).
 
 ![](<../../.gitbook/assets/image (2).png>)
