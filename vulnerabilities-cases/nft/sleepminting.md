@@ -6,22 +6,22 @@ coverY: 0
 
 # Sleep Minting
 
-## Abstract
+## 摘要
 
-A scam technique makes NFT mint & transfer look like originated from a famous account, and lures users to buy the scam NFTs in the collection.
+一种NFT诈骗手段，可以让NFT的mint和transfer看起来像来自某个著名账户，以此诱骗用户购买该 NFT集合中的物品。
 
-## Mechanism
+## 机制
 
-Most dApps or websites are using Event logs of Mint & Transfer solely when analysing its origin, sender, receiver and etc..
+大部分dApp或网站都仅仅根据Mint和Transfer的事件日志来分析其交易过程，如源头，发送者，接受者等等。
 
 `event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);`
 
-The front end just listens to this event emitted from blockchain, and displays to users that some NFT was transferred from/to some addresses according to this event log.
+前端仅监听这个从链上发出的事件，并据此告知用户该NFT发送自/至某些地址。
 
-The following is how `transferFrom()` works:
+下面是`transferFrom()`函数如何工作的:
 
-1. Check if the caller is the owner of the NFT to be transferred
-2. In the end, it will emit a `Transfer` event.
+1. 检查调用者是否是该NFT的owner
+2. 调用成功后会生成 `Transfer` 事件.
 
 ```
   function transferFrom(address _from, address _to, uint256 _tokenId) external override {
@@ -44,11 +44,11 @@ The following is how `transferFrom()` works:
   }
 ```
 
-Now we add a private address in the NFT721 contract,
+现在我们在NFT721合约中增加一个私有地址，
 
 `address private ADMIN = "0x630664594134b641D78c9D2823385d8BAC63d4fF";`
 
-Then we modifiy the requirement in `transferFrom()` and grant a super power to the ADMIN.
+然后再修改 `transferFrom()`中的条件限制，赋予该地址超级权限。
 
 ```
   function transferFrom(address _from, address _to, uint256 _tokenId) external override {
@@ -67,11 +67,11 @@ Then we modifiy the requirement in `transferFrom()` and grant a super power to t
   }
 ```
 
-ADMIN has the ability to transfer anyone's NFT while the `Transfer` Event remains the same, who still report the ordinary from/to address. Thus, the front end will also resolve the result as usual, but this time it's wrong.
+ADMIN有转移任何人NFT的权限，并且其`Transfer`事件还和之前一样，始终报告原有的from/to和地址。因此前端会照常解析，但就被钓鱼了。
 
-## Countermeasure
+## 反制措施
 
-For front end, it's easy to filter a Sleep Minting action:
+对前端而言，过滤Sleep Minting行为是比较简单的：
 
 ```
 // PESUDO CODE
@@ -80,8 +80,8 @@ if (transferEvent.from != tx.origin && Approval[_tokenId] != tx.origin){
 }
 ```
 
-Though this may have side effects. You should modify the condition according to your use case.
+不过这可能有其他副作用，需要根据使用场景进行修改。
 
-## References
+## 参考
 
 [https://a16z.com/2022/03/09/sleep-minting-nfts/](https://a16z.com/2022/03/09/sleep-minting-nfts/)
