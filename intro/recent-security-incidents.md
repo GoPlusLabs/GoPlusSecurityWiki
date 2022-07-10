@@ -2,7 +2,7 @@
 
 This is a list of Web3 security incidents that have been logged in this book and happened in 6 months.
 
-
+[xCarnival](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/symmetry-breaking/xcarnival)
 
 [Metamask Demonic Vulnerability](https://blog.gopluslabs.io/vulnerabilities-cases/user-client/metamask-phrase-leakage)
 
