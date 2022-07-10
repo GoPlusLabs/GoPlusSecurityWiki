@@ -67,7 +67,7 @@ Now we have the signature `(R,s)`. As you can see, you can calculate any signatu
 ### Verify the Signature
 
 $$
-if\space sB == R+H(R,A,M)A
+if\space 8sB == 8R+8H(R,A,M)A
 $$
 
 ​
