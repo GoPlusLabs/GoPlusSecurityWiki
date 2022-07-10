@@ -7,8 +7,8 @@
 
 ## 👿 Vulnerabilities Cases
 
-* [Blockchain Network](vulnerabilities-cases/blockchain-network/README.md)
-  * [Eclipse Attack](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
+* [区块链网络](vulnerabilities-cases/blockchain-network/README.md)
+  * [日蚀攻击](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
 * [Smart Contract](vulnerabilities-cases/smart-contract/README.md)
   * [Symmetry Breaking](vulnerabilities-cases/smart-contract/symmetry-breaking/README.md)
     * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/poly-network.md)
