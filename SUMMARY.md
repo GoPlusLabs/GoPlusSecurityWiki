@@ -11,7 +11,7 @@
   * [Eclipse Attack](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
 * [Smart Contract](vulnerabilities-cases/smart-contract/README.md)
   * [Symmetry Breaking](vulnerabilities-cases/smart-contract/symmetry-breaking/README.md)
-    * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/poly-network.md)
+    * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/xCarnival.md)
   * [Hash Collision](vulnerabilities-cases/smart-contract/hash-collision/README.md)
     * [Poly Network](vulnerabilities-cases/smart-contract/hash-collision/poly-network.md)
   * [General NFT](attack-vectors/nft.md)
