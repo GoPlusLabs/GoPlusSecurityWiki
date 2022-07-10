@@ -1,11 +1,9 @@
-# Recent Security Incidents
+# 近期安全事件
 
-This is a list of Web3 security incidents that have been logged in this book and happened in 6 months.
+下面列出了本书中记录的最近六个月发生的安全事件：
 
+[Metamask Demonic漏洞](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/user-client/metamask-phrase-leakage)
 
+[Wintermute & OP](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/replay-attack/wintermute-and-op)
 
-[Metamask Demonic Vulnerability](https://blog.gopluslabs.io/vulnerabilities-cases/user-client/metamask-phrase-leakage)
-
-[Wintermute & OP](https://blog.gopluslabs.io/vulnerabilities-cases/replay-attack/wintermute-and-op)
-
-[ERC721R Bug](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/nft/erc721r-refund)
+[ERC721R Bug](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/smart-contract/nft/erc721r-refund)
