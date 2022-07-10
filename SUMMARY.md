@@ -11,7 +11,7 @@
   * [日蚀攻击](vulnerabilities-cases/blockchain-network/eclipse-attack.md)
 * [智能合约](vulnerabilities-cases/smart-contract/README.md)
   * [对称性破缺](vulnerabilities-cases/smart-contract/symmetry-breaking/README.md)
-    * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/poly-network.md)
+    * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/xCarnival.md)
   * [哈希碰撞](vulnerabilities-cases/smart-contract/hash-collision/README.md)
     * [Poly Network](vulnerabilities-cases/smart-contract/hash-collision/poly-network.md)
   * [通用NFT](attack-vectors/nft.md)
