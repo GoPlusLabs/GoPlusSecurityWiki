@@ -1,4 +1,3 @@
-
 ---
 cover: ../../../.gitbook/assets/Xcarnival.jpg
 coverY: 0
@@ -25,7 +24,7 @@ NFT lending platform[@XCarnival\_Lab](https://twitter.com/XCarnival\_Lab) was ex
 * An instance of **xToken**, a contract for holding funds. Funds is borrowed from here
 * **borrow()** will be called when users request a loan
 
-### ****[xNFT](https://etherscan.io/address/0xb14b3b9682990ccc16f52eb04146c3ceab01169a#code)
+### [xNFT](https://etherscan.io/address/0xb14b3b9682990ccc16f52eb04146c3ceab01169a#code)
 
 * Manager of NFT collateralisation, withdrawing, etc..
 * **pledgeAndBorrow()** is in charge of depositing NFT as collateral and borrowing from xToken
