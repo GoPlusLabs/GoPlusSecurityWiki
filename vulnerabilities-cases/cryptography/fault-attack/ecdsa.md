@@ -4,62 +4,62 @@ cover: >-
 coverY: 556.3549160671463
 ---
 
-# ECDSA random numbers
+# ECDSA随机数
 
-## Abstract
+## 摘要
 
-In the ECDSA signing process, a random number(or determined non-repeat hash number) is required to sign the message.
+在ECDSA过程中，需要一个随机数（也可能是确定性的不重复的哈希）来对消息签名。
 
-If you use the same random number for different messages, your private key will be exposed.
+如果你对不同的消息使用了同一个随机数，则私钥会暴露。
 
-The most famous incident is [Sony PlayStation 3 Hack](https://www.theguardian.com/technology/gamesblog/2011/jan/07/playstation-3-hack-ps3).
+最出名的事件莫过于[Sony PlayStation 3 Hack](https://www.theguardian.com/technology/gamesblog/2011/jan/07/playstation-3-hack-ps3).
 
-## Cryptography Background
+## 密码学背景
 
-Several **simplified** steps in ECDSA:
+以下为几步**简化的**ECDSA过程:
 
-### Key Generation
+### 密钥生成
 
-* **private key** **d\_A**, an integer generated from RNG
-* **public key Q\_A:**
+* **私钥 d\_A**，由RNG生成的随机数
+* **公钥 Q\_A:**
 
 $$
-Q_A=d_A*G \\ \text{G is the generator of the curve}
+Q_A=d_A*G \\ \text{G为曲线的生成元}
 $$
 
-### Signature
+### 签名
 
-* Calculate hash `h = hash(M)` of the message `M`
-* Generate a random number `k`
-* Calculate the random point `R = kG`&#x20;
-* Denote R's x coordinate `R.x` as `r`, then calculate s
+* 计算消息`M`的哈希值`h = hash(M)`
+* 生成随机数`k`
+* 计算随机点`R = kG`&#x20;
+* 将点R的横坐标`R.x`记为`r`, 然后计算s
 
 $$
 s = k^{-1}(h+rd_A)(\bmod \,n)
 $$
 
-Now we have the signature `(r,s)`.
+这样就得到了签名`(r,s)`.
 
-### Verify Signature
+### 验证签名
 
-* Calculate hash `h = hash(M)` of the message `M`
-* Calculate the modular inverse
+* 计算消息`M`的哈希值`h = hash(M)`
+* 计算其逆
 
 $$
 s_1=s^{-1}(\bmod \,n)
 $$
 
-* Recover the random point used during the signing
+* 恢复在签名时使用的随机点
 
 $$
 R' = (hs_1) \times G + (r  s_1) \times Q_A
 $$
 
-* Check if `R'.x == r`
+* 检查是否有`R'.x == r`
 
-## Attack Details
+## 攻击细节
 
-Apparently, if we use the same `k` (also means the same `r`) for different message `M`, the private key can be solved by the following steps:
+显然，如果我们对不同的消息`M`使用了相同的`k`（也意味着`r`相同），可以通过下列几步解出私钥：
 
 $$
 \begin{cases}
@@ -76,8 +76,8 @@ d_A = (sk-h)r^{-1}
 \end{cases}
 $$
 
-## Summary
+## 总结
 
-* Never use the same random numbers when signing by ECDSA
-* Or, use a deterministic ECDSA
-* Developers should be familiar enough with the underlying cryptography to avoid similar attacks.
+* 使用ECDSA签名时绝不使用相同的随机数
+* 或者，使用确定性ECDSA
+* 开发者应该尽可能熟悉底层的密码学知识以避免类似攻击

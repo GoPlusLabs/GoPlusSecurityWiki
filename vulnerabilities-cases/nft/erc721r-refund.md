@@ -5,23 +5,23 @@ coverY: 0
 
 # ERC721R Bug
 
-## Abstract
+## 摘要
 
-| Stauts       | Fixed                                                                    |
+| 状态       | 已修复                                                                    |
 | ------------ | ------------------------------------------------------------------------ |
-| Type         | Contract                                                                 |
-| Date         | Apr 12, 2022                                                             |
-| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |
-| Direct Loss  | None. It was reported in the early stage.                                |
-| Project Repo | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |
+| 类型         | 合约                                                                 |
+| 日期         | Apr 12, 2022                                                             |
+| 来源       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1513793556367884289)     |
+| 直接损失  | 无，早期阶段项目                                |
+| 项目仓库 | [https://github.com/erc721r/ERC721R](https://github.com/erc721r/ERC721R) |
 
-## What is NFT721R?
+## NFT721R是什么?
 
-An NFT protocol enabling minters to return the minted NFT for a refund in a certain period.
+一个允许NFT铸造者在一定时间内退款的NFT协议。
 
-## Issue
+## 问题
 
-In the typical case, the NFT dev calls this `withdraw()` function after refundEndTime to withdraw the Eth raised from minting. This step is OK.
+正常情况下，开发者在`refundEndTime`后调用`withdraw()`函数来取出铸造过程中收集的费用，这一步骤没有问题。
 
 ```
 function withdraw() external onlyOwner {
@@ -31,7 +31,7 @@ function withdraw() external onlyOwner {
 }
 ```
 
-But, check the refund function: Minter calls this func to return the NFTs he minted to the `refundAddress`(an address set and controlled by dev) then gets the corresponding amount of [$ETH](https://twitter.com/search?q=%24ETH\&src=cashtag\_click) back from the NFT contract. But what if `refundAddress` is a minter holding one of the NFTs?
+再来看一下refund()函数： 铸造者调用该函数将铸造的NFT退回至 `refundAddress`(一个由开发者控制和设置的地址) 然后再从合约拿回相应的数量的ETH。可如果`refundAddress`本身就是一个铸造者呢？
 
 ```
 function refund(uint256 [] calldata tokenIds) external {
@@ -48,4 +48,4 @@ function refund(uint256 [] calldata tokenIds) external {
 }
 ```
 
-A scam dev will set a refundAddress, then mint an NFT with this `refundAddress`. Next step, he calls `refund()`. Because the NFT will always return to refundAddress, he still possesses that NFT while collecting some amount of Eth. He can do it multiple times until all funds run out.
+恶意开发者可以设置一个`refundAddress`，然后再从该地址铸造NFT。下一步，调用`refund()`。由于NFT总会退回`refundAddress`，他仍然持有这个NFT同时又得到了一些ETH。他可以重复该过程多次直至偷走所有资金。

@@ -4,12 +4,10 @@ cover: >-
 coverY: -191.1400293255132
 ---
 
-# Fault Attack
+# 故障攻击
 
-## Definition
+## 定义
 
-In the hardware industry, a **fault attack** is an intentional manipulation of the integrated circuit or its state, with the aim to provoke an error within the integrated circuit in order to move the device into an unintended state. The goal is to access security critical information or to disable internal protection mechanisms.&#x20;
+在硬件工业中，**故障攻击**指的是对集成电路或其状态的恶意操纵，从而引起电路错误而将设备引入一个不正常的状态。其目标是访问关键安全信息或停止内部的保护机制。&#x20;
 
-
-
-In cryptography related blockchain or software industry, we also call the attack along similar attack vectors leads to a similar result as fault attack.
+在区块链或软件领域，我们同样把有类似攻击路径和结果的行为称为故障攻击。

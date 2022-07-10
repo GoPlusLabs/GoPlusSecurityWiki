@@ -4,8 +4,8 @@ cover: >-
 coverY: 389.6040609137056
 ---
 
-# Basic Cryptography
+# 基础密码学
 
-Cryptography is the foundation of blockchain technology.
+密码学是区块链技术的基石。
 
-While we've had solid proof of the safety of existing well-known cryptographic algorithms, there are still some vulnerable implementations which corrupt the soundness of these safe schemes.
+虽然我们对当下知名的密码学算法都有充足的安全性证明，但不安全的实现会给这些本来安全的算法带来风险。

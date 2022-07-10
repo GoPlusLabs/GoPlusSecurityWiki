@@ -18,7 +18,7 @@
     * [ERC721R Bug](vulnerabilities-cases/nft/erc721r-refund.md)
     * [Sleep Minting](vulnerabilities-cases/nft/sleepminting.md)
   * [跨链桥](vulnerabilities-cases/smart-contract/cross-chain-bridge/README.md)
-    * [Poly Network](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/hash-collision/poly-network)
+    * [Poly Network](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/smart-contract/hash-collision/poly-network)
 * [客户端](vulnerabilities-cases/user-client/README.md)
   * [剪切板安全](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
   * [Metamask Demonic漏洞](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
