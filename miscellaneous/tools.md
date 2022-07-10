@@ -4,7 +4,7 @@
 
 ### [4byte](https://www.4byte.directory)
 
-Ethereum 4-byte function signatures database
+以太坊4字节函数签名数据库
 
 ![](<../.gitbook/assets/image (1).png>)
 
