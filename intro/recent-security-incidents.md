@@ -2,10 +2,12 @@
 
 下面列出了本书中记录的最近六个月的安全事件：
 
-[Metamask Demonic漏洞](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/user-client/metamask-phrase-leakage)
+[xCarnival](https://blog.gopluslabs.io/v/zh/gong-ji-an-li/smart-contract/symmetry-breaking/xcarnival)
 
-[Wintermute & OP](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/replay-attack/wintermute-and-op)
+[Metamask Demonic漏洞](https://blog.gopluslabs.io/v/zh/gong-ji-an-li/user-client/metamask-phrase-leakage)
 
-[ERC721R Bug](https://blog.gopluslabs.io/v/zh/vulnerabilities-cases/smart-contract/nft/erc721r-refund)
+[Wintermute & OP](https://blog.gopluslabs.io/v/zh/gong-ji-an-li/replay-attack/wintermute-and-op)
+
+[ERC721R Bug](https://blog.gopluslabs.io/v/zh/gong-ji-an-li/smart-contract/nft/erc721r-refund)
 
 
