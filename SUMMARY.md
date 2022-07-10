@@ -32,7 +32,7 @@
     * [ECDSA随机数](vulnerabilities-cases/cryptography/fault-attack/ecdsa.md)
     * [Ed25519](vulnerabilities-cases/cryptography/fault-attack/eddsa.md)
 * [零知识证明](vulnerabilities-cases/zero-knowledge-proof/README.md)
-  * [别名攻击](vulnerabilities-cases/zero-knowledge-proof/g-addition.md)
+  * [别名攻击](vulnerabilities-cases/zero-knowledge-proof/aliases.md)
 
 ## 🏝 杂项
 
