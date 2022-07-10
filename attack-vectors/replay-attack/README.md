@@ -4,22 +4,23 @@ cover: >-
 coverY: 214.8803480783176
 ---
 
-# Replay Attack
+# 重放攻击
 
-## Definition
+## 定义
 
-In blockchain industry, a **Replay Attack** is an attack technique that acquires transaction info from old transactions and submits it to new chains, smart contracts or other targets.
+在区块链领域,**重放攻击**是一种将旧交易的信息提交至新链、智能合约等目标上的攻击手法。
 
-Generally in Ethereum-like chains, there are two kinds of replay attacks:
+通常来说，在以太坊类似链上，有两种重放攻击：
 
-* **Transaction signature replay:** Send the [**raw signature**](./#obtain-raw-signature-of-one-transaction) of one transaction to a chain. If it's the same chain as the original transaction, it won't work since there is `nonce` prohibiting this kind of behaviour. When it's a cross-chain transaction replay, it depends on whether the original transaction and target chain consensus have utilised EIP-155, which contains `chainId` to prevent cross-chain replay.
-* **Transaction data replay:** Here `data` means exactly the `data` field in one transaction. By data copied from someone else, the attack could exploit a contract with awful membership/identity verification.
+* **交易签名重放：** 将一笔交易的[**原始签名**](./#获取交易原始签名)提交至一条链上。如果是同一条链则该该交易会失败，因为`nonce`不允许此类行为。而如果是跨链重放，则取决于原交易和目标链共识系统是否使用了包含`chainId`的抗跨链重放的EIP-155.
+* **交易data重放:** 此处`data`就是一笔交易中的`data`字段。通过从其他交易中复制data，有可能对不严谨的身份/成员验证合约进行攻击.
 
 In transaction signature replay, the transaction looks like it was sent by the original sender, but actually it's the hack who initiated the transaction, but we barely have measures to distinguish.
+在交易签名重放中，该交易看起来是由原交易发送者发送的，但实际上是由黑客发送的，而我们几乎没有任何手段能做区分。
 
 ## Other Details
 
-### Obtain raw signature of one transaction
+### 获取交易原始签名
 
 #### Web3.js
 
