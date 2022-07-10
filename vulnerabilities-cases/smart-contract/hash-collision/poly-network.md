@@ -5,35 +5,35 @@ coverY: 0
 
 # Poly Network
 
-## Abstract
+## 摘要
 
-Poly Network is a cross-chain protocol. The hacker stole a huge amount of assets by replacing its Keepers, who have the power to move funds, with himself.
+Poly Network是个跨链协议。其中的守卫具有移动资金的能力。通过将守卫替换为自己，黑客盗取了巨额资产。
 
-The following vulnerabilities of the related contracts were exploited:
+黑客利用了相关合约的下列漏洞：
 
-* Ability to call arbitrary contract with insufficient checks or restrictions
-* Hash collision of function signature with `abi.encodePacked`
+* 可调用任意合约，没有足够的检查或限制
+* `abi.encodePacked`组合的函数签名的哈希碰撞
 
-| Status       | Fixed                                                                                            |   |
+| 状态       | 已修复                                                                                            |   |
 | ------------ | ------------------------------------------------------------------------------------------------ | - |
-| Type         | Contract, Cross-Chain                                                                            |   |
-| Date         | August 10, 2021                                                                                  |   |
-| Source       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |   |
-| Direct Loss  | $610 million                                                                                     |   |
-| Project Repo | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |   |
+| 类型         | 合约，跨链                                                                            |   |
+| 日期         | August 10, 2021                                                                                  |   |
+| 来源       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |   |
+| 直接损失  | $610 million                                                                                     |   |
+| 项目仓库 | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |   |
 
-## Contract Structure
+## 合约结构
 
-There are two main contracts related to this incident: `EthCrossChainData(ECCD)` and `EthCrossChainManager(ECCM)`.
+本事件中有两个相关合约：`EthCrossChainData(ECCD)`和`EthCrossChainManager(ECCM)`。
 
-Under normal circumstances, Keepers monitor cross-chain transactions from the source chain to the destination chain, then submit block headers, proofs and other data to `ECCD` on destination chains.
+在正常情况下，守卫会监控从原链到目标链的跨链交易，然后向`ECCD`提交区块头，证明和其他数据。
 
-Then in `ECCM`, the validity of cross-chain transactions will be checked and perform **contract** **calls** **specified by transactions** if all checks pass(eg. signed by Keepers, Merkle root correctness, etc.)**.** Those **contract** **calls** should be executing cross-chain operations as expected, but there were very weak restrictions.
+然后，在`ECCM`中，跨链交易的有效性会被合约验证，如果检查通过（如，经过守卫签名，梅克尔树根正确，等）再执行**交易中指定的合约调用**。这些合约调用原本预期是用来执行跨链操作的，但其限制条件非常弱。
 
 ### EthCrossChainData(ECCD)
 
-* Update and store data of all cross-chain transactions.
-* Add, change and store public keys of Keepers, who have the ability to move funds or perform other critical operations(eg. sign and submit cross-chain transactions witnessed from other chains).
+* 更新并存储所有的跨链交易。
+* 添加，修改，存储所有的守卫的公钥。守卫具有移动资金和进行其他关键操作（如对跨链操作签名）的能力。
 
 **putCurEpochConPubKeyBytes()**
 
@@ -46,12 +46,12 @@ Then in `ECCM`, the validity of cross-chain transactions will be checked and per
     }
 ```
 
-Change public keys of Keepers. Because it has `onlyOwner` modifier, it can only be called by `ECCM`, the owner of `ECCD`.
+修改守卫的公钥。由于有`onlyOwner`修饰符，只能被`ECCD`的所有者`ECCM`调用。
 
 ### **EthCrossChainManager(ECCM)**
 
-* Verify Poly chain header and proof, execute the cross-chain tx from Poly chain to Ethereum.
-* Owner of the `ECCD` contract.
+* 验证Poly Chain的区块头和证明，执行从Poly Chain到以太坊的跨链交易。
+* `ECCD`的所有者。
 
 #### **changeBookKeeper()**
 
@@ -63,7 +63,7 @@ function changeBookKeeper(
     whenNotPaused public returns(bool) {
 ```
 
-The ordinary and legal method for changing Keepers. Hacker was not able to call this one as it required Keepers' signatures.
+该方法是正常且合法的替换守卫的方法。黑客无法调用该方法，因为该方法需要来自守卫的签名。
 
 **crossChain()**
 
@@ -76,7 +76,7 @@ function crossChain(
      whenNotPaused external returns (bool) {
 ```
 
-This function was used for submitting a cross-chain tx on a source chain. Its info will be relayed to the `ECCD` contract on the destination chain by Keepers.
+该方法用于从原链上提交一笔跨链交易。其信息会被守卫中继至目标链上的`ECCD`。
 
 **verifyHeaderAndExecuteTx()**
 
@@ -89,9 +89,9 @@ function verifyHeaderAndExecuteTx(
         bytes memory headerSig) {
 ```
 
-Verify Poly chain header, proof, and signatures of Keepers and execute the cross-chain tx from Poly chain to Ethereum.
+验证Poly Chain的区块头，证明，以及守卫的签名，并执行跨链交易。
 
-**\_executeCrossChainTx()**
+**executeCrossChainTx()**
 
 ```
 function _executeCrossChainTx(
@@ -103,23 +103,23 @@ function _executeCrossChainTx(
     internal returns (bool){
 ```
 
-An internal function called by **verifyHeaderAndExecuteTx()** to execute speificied operations.
+一个internal函数，由**verifyHeaderAndExecuteTx**调用，并执行指定操作。
 
-## Attack Vectors & Details
+## 攻击向量和细节
 
-### Holistic View
+### 整体布局
 
-1. The hacker constructed sophisticated parameters for Keeper replacement.
-2. The hacker called `crossChain()` from other chains to submit cross-chain transactions, which are not normal transactions but for Keeper replacement.
-3. Relayers of Poly Network relayed those transactions to `ECCD` on the destination chain.
-4. `ECCM` verified and executed malicious cross-chain transactions from `ECCD`.
-5. Move funds as he wanted. Attack completed.
+1. 黑客精心构建了替换守卫的参数
+2. 黑客在其他链上调用了`crossChain()`并提交跨链交易，但这些并不是正常的跨链交易，其内容是替换守卫
+3. Poly Network的守卫将这些交易中继至目标链上的`ECCD`
+4. `ECCM`从`ECCD`中验证并执行了这些恶意跨链交易
+5. 转移资金跑路，攻击完成
 
-Except for Step1, the remainings are very ordinary operations, thus here we only delve into the details of Step1, malicious parameters.
+除了第一步，剩余的都是比较平常的操作，因此我们这里只解析第一步的细节，恶意参数。
 
-### Construction of Malicious Parameters
+### 恶意参数的构建
 
-Let's take a look at how does `_executeCrossChainTx()` execute calls to other contracts:
+我们看下`_executeCrossChainTx()`是如何调用其他合约的：
 
 ```
     (success, returnData) = _toContract.call(
@@ -128,49 +128,49 @@ Let's take a look at how does `_executeCrossChainTx()` execute calls to other co
             abi.encode(_args, _fromContractAddr, _fromChainId)));
 ```
 
-Basically it can be interpreted as `ContractAddress.call(functionSelector, paramters).`
+基本上，可以解读为`ContractAddress.call(functionSelector, paramters)`。
 
-**Hash collision of function selector**
+**函数选择子的哈希碰撞**
 
-`functionSelector` = `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`. With this `bytes4` typecasting, only the first 4 bytes were saved and Solidity function selector are 4 bytes long.
+`functionSelector` = `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`. 通过 `bytes4` 类型强转,只有前4字节得以保留，而Solidity的函数选择子也是4字节长。
 
-But here's how `abi.encodePacked()` works from Solidity Docs:
+不过看一下Solidity官方文档对`abi.encodePacked()`的说明：
 
-> If you use `keccak256(abi.encodePacked(a, b))` and both `a` and `b` are dynamic types, it is easy to craft collisions in the hash value by moving parts of `a` into `b` and vice-versa. More specifically, `abi.encodePacked("a", "bc") == abi.encodePacked("ab", "c")`. If you use `abi.encodePacked` for signatures, authentication or data integrity, make sure to always use the same types and check that at most one of them is dynamic. Unless there is a compelling reason, `abi.encode` should be preferred.
+> 如果你使用了`keccak256(abi.encodePacked(a, b))`且`a`和`b`都是动态类型，则非常容易通过将`a`和`b`的一部分内容移动到对方中去来产生哈希碰撞。具体来说，`abi.encodePacked("a", "bc") == abi.encodePacked("ab", "c")`。如果你为签名，真实性和数据完整性等使用了`abi.encodePacked`，则确保总是使用同一种类型，并检查其中至多有一项是动态的。除非有特殊原因，应优先考虑`abi.encode`。
 
-Namely, in `bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`, `"(bytes,bytes,uint64)"` is a very weak limitation, since `encodePacked` only concatenates all characters, and only the first four bytes of keccak256 hash were used as a function selector, the attacker can easily brute force an identical one.
+也就是说，在`bytes4(keccak256(abi.encodePacked(_method, "(bytes,bytes,uint64)")))`中, `"(bytes,bytes,uint64)"`是一个非常弱的限制，因为`encodePacked`仅仅是将所有字符串接起来，且只有前4字节会作为keccak256后的函数选择子，黑客可以轻松地暴力运算出一个相同的函数选择子。
 
-The signature of `putCurEpochConPubKeyBytes(bytes)` , which updates the public keys of Keepers, is `0x41973cd9`. You can calculate it by `ethers.utils.id ('putCurEpochConPubKeyBytes(bytes)').slice(0, 10)` or various online tools.
+`putCurEpochConPubKeyBytes(bytes)`函数用来更新守卫的私钥，其选择子为`0x41973cd9`。你可以通过`ethers.utils.id ('putCurEpochConPubKeyBytes(bytes)').slice(0, 10)`或其他各种在线工具来计算。
 
-The attacker brute-forced `RANDOM_STRING` to match the following equation:
+黑客暴力破解了`RANDOM_STRING`来满足下列等式：
 
 `'0x41973cd9' == ethers.utils.id ('RANDOM_STRING(bytes,bytes,uint64)').slice(0, 10)`.
 
-There are many `RANDOM_STRING` that meet the requirement above, eg. :
+有许多`RANDOM_STRING`可以满足这个式子，比如：
 
 * `f1121318093`
 * `func10487987874260605968`
 
-**Omitted arguments**
+**被省略的参数**
 
-There are three paramters in the codesnipet:
+前面章节的代码块里的函数需要三个参数:
 
 `abi.encode(_args, _fromContractAddr, _fromChainId)`
 
-But there's only ONE parameter in the `putCurEpochConPubKeyBytes(bytes)` function. Is that a valid call if we call a function with redundant arguments? Conditionally, yes, they will just be omitted if you make up calls this way.
+但在`putCurEpochConPubKeyBytes(bytes)`中只需要一个参数。那么将冗余的参数传递给函数，是合法调用吗？分情况，此处是yes，通过这种方式调用函数，这些多余的参数只会被忽略。
 
-The hacker passed his address `0xA87fB85A93Ca072Cd4e5F0D4f178Bc831Df8a00B` to `_args`, which will be passed to `putCurEpochConPubKeyBytes(bytes memory curEpochPkBytes)` to replace Keepers address.
+黑客将地址 `0xA87fB85A93Ca072Cd4e5F0D4f178Bc831Df8a00B`传入了`_args`，然后会被传至`putCurEpochConPubKeyBytes(bytes memory curEpochPkBytes)` 来替换守卫的地址。
 
-Construction of parameters done.
+参数构建完成。
 
-## Summary
+## 总结
 
-* **Permission control matters**: In a complex project, `onlyOwner` or other forms of permission controls could fail. There could be other attack vectors to access the core. Developers should check with a more holistic picture to enforce solid permission controls.
-* **Beware hash collision**: \*\*\*\* The ability to call arbitary or limited functions is good for expansible smart contract design. But using unsafe implementation could lead to hash collsion attack. It is suggested that developers change`call(bytes4(keccak256("f(uint256)")), a, b)` to`call(abi.encodeWithSignature("f(uint256)", a, b))`.
+* **权限控制很重要**: 在复杂的工程中, `onlyOwner` 或其他形式的权限控制有可能会失效。可能会有其他攻击向量来访问到核心区域。开发者应该有一个更加整体的视野来巩固权限控制。
+* **谨防哈希碰撞**: 能任意或有限制地调用函数是优秀的智能合约可扩展性的设计。 建议开发者放弃`call(bytes4(keccak256("f(uint256)")), a, b)` ，而使用`call(abi.encodeWithSignature("f(uint256)", a, b))`，并尽可能避免使用`abi.encodePacked()`。
 
-## Aftermath
+## 余波
 
-Report from [Kudelski](https://research.kudelskisecurity.com)
+来自[Kudelski](https://research.kudelskisecurity.com)的报告：
 
 > Poly Network asked the hacker to return the funds. The security company Slowmist published findings on the alleged hacker, claiming that the hacker’s identity had been exposed and that the group had access to the hacker’s email and IP address. According to Slowmist, the hacker was able to take advantage of a relatively unknown crypto exchange in Asia and they claimed to have a lot of information about the attacker.
 >
@@ -178,7 +178,7 @@ Report from [Kudelski](https://research.kudelskisecurity.com)
 >
 > While this story develops, it is not superfluous to remind that “blockchain” is not synonymous with “security”. It is very important to audit the security of your applications, including smart contracts.
 
-## References
+## 参考
 
 [https://docs.soliditylang.org/en/v0.8.15/abi-spec.html](https://docs.soliditylang.org/en/v0.8.15/abi-spec.html)
 

@@ -4,12 +4,12 @@ cover: >-
 coverY: 0
 ---
 
-# Cross-chain Bridge
+# 跨链桥
 
-Cross-chain bridge is a system that passes information(asset cross-chain transfer, message call, etc.) between two or more chains.
+跨链桥是一种在两条或多条公链之间传递信息（跨链资产转移，消息发送，等）的系统。
 
-From finality and security perspective, there are three kinds of bridges:
+从最终性和安全性角度来看，有三种跨链桥：
 
-* Witness bridge, which adopts a group of witnesses as judges to determine whether a cross-chain transaction has happened and pass the info to other chains. Most bridges utilise this model by multi-sig vault management.
-* Relay bridge, relayers relay validity proof(block header, etc.) from one chain to another. There are smart contracts that act like light clients on both chains to validate the proof. This kind could be attacked by Parallel Universe Attack if the connected chains are not covered by the same set of blockchain nodes/validators.
-* Autonomy bridge, if one chain is subordinate to another(eg. rollup L2 and its L1), and its bridge(usually the official one) is a part of the control system, we name it an autonomy bridge since it has the power to determine the finality only by the cross-chain info within itself, without any consensus from external judges.
+* 见证人桥。这种桥由一组见证人来确定一笔跨链交易，并将其信息传递给其他链。大部分桥都使用了见证人模型，并采用多签钱包进行资金管理。
+* 中继桥。中继器将有效性证明（区块头等）中继到另一条链。在每条链上都有类似轻客户端的智能合约来验证跨链证明。这种类型的桥，如果两条链的安全不由同一组节点或验证者负责，可能会遭到平行宇宙攻击。
+* 自决桥。如果一条链从属于另一条链（如rollup的L2和其L1），且该桥（一般是官方桥）构成了控制系统的一部分，我们称之为自决桥。因为这种桥的最终性只由其内部信息决定，不需要任何外部见证人的共识。

@@ -4,11 +4,11 @@ cover: >-
 coverY: 371.64612037708486
 ---
 
-# Hash Collision
+# 哈希碰撞
 
-## Definition
+## 定义
 
-In computer science, a **hash collision** or **clash** is when two pieces of data in a hash table share the same hash value. The hash value in this case is derived from a hash function which takes a data input and returns a fixed length of bits.
+在计算机科学中，**哈希碰撞**指的是两个不同的信息在同一个哈希算法下输出了相同的哈希输值。
 
-Usually in blockchain security, hash collision could be used to call unexpected functions.
+在区块链安全中，哈希碰撞可以用来出乎意料地调用一些函数。
 
