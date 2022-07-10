@@ -20,7 +20,7 @@
   * [Cross-chain Bridge](vulnerabilities-cases/smart-contract/cross-chain-bridge/README.md)
     * [Poly Network](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/hash-collision/poly-network)
 * [User Client](vulnerabilities-cases/user-client/README.md)
-  * [Clipboard Monitoring](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
+  * [Clipboard Safety](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
   * [Metamask Demonic Vulnerability](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
