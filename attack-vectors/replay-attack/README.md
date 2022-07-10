@@ -15,7 +15,7 @@ Generally in Ethereum-like chains, there are two kinds of replay attacks:
 * **Transaction signature replay:** Send the [**raw signature**](./#obtain-raw-signature-of-one-transaction) of one transaction to a chain. If it's the same chain as the original transaction, it won't work since there is `nonce` prohibiting this kind of behaviour. When it's a cross-chain transaction replay, it depends on whether the original transaction and target chain consensus have utilised EIP-155, which contains `chainId` to prevent cross-chain replay.
 * **Transaction data replay:** Here `data` means exactly the `data` field in one transaction. By data copied from someone else, the attack could exploit a contract with awful membership/identity verification.
 
-In transaction signature replay, the transaction looks like it was sent by the original sender, but actually it's the hack who initiated the transaction, but we barely have measures to distinguish.
+In transaction signature replay, the transaction looks like it was sent by the original sender, but actually it's the hacker who initiated the transaction, but we barely have measures to distinguish.
 
 ## Other Details
 
