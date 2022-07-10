@@ -18,11 +18,11 @@ coverY: 0
 * **节点侧:** 入侵一个知名的公共节点并将其黑化，并假设基于之前该节点的名誉，大部分用户不会检查其数据真实性
 * **混合**：在上述两个方向上均进行入侵活动，确保日蚀覆盖程度最大化
 
-No matter which path you take, the **core idea** is to establish an isolated, manipulated and malicious network different from the main net, without being noticed in the first place by your target users.
+不论你选择哪种方式，**核心思想**都是要建立一个与主网有区别的，隔绝的、被操控的恶意网络，而尽可能不要在第一时间被用户发现。
 
-The most common consequences of an eclipse attack in cryptocurrency projects include:
+区块链项目最常见的被日蚀攻击的后果包括：
 
-* **Double-spend attacks:** Once the victim is cut off from the network, the attacker may misdirect the victim into accepting a transaction that uses either an invalid input or the same input as another transaction that has already been validated on the legitimate network.
-* **Miner power disruption:** Attackers can hide the fact that a block has been mined from an eclipsed miner, thereby misleading the victim into wasting time and computing power mining in a private blockchain. This way, the attacker is able to increase their relative hash rate within the network and bias the block-mining race in their favour. Furthermore, since an eclipsed miner is essentially blocked out from the legitimate network, attackers may launch eclipse attacks on multiple miners within a network in order to reduce the threshold required to launch a successful 51% attack on the entire network.
+* **双花攻击：** 一旦受害者与主网隔绝，攻击者可以诱导受害者接收一笔虚假交易，实现双花。
+* **矿工算力分配：** 攻击者可以让被日蚀攻击的矿工误以为新块尚未挖出，在假链上浪费它们的时间和算力。以此便可以在主网上增加攻击者的哈希占有率，在挖矿竞赛中更有优势。另外，因为被日蚀攻击的矿工基本与主网绝缘，攻击者可以向多个矿工发起攻击，来减少51%攻击的启动成本。
 
-##
+
