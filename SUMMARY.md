@@ -3,7 +3,7 @@
 ## 📗 Intro
 
 * [Hello, Web3!](README.md)
-* [Recent Security Incidents](intro/recent-security-incidents.md)
+* [近期安全事件](intro/recent-security-incidents.md)
 
 ## 👿 Vulnerabilities Cases
 
@@ -21,7 +21,7 @@
     * [Poly Network](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/hash-collision/poly-network)
 * [User Client](vulnerabilities-cases/user-client/README.md)
   * [Clipboard Safety](vulnerabilities-cases/user-client/copy-and-paste-private-keys.md)
-  * [Metamask Demonic Vulnerability](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
+  * [Metamask Demonic漏洞](vulnerabilities-cases/user-client/metamask-phrase-leakage.md)
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
 * [Phishing](vulnerabilities-cases/phishing/README.md)
