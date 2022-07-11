@@ -58,7 +58,7 @@ func data(forPasteboardType pasteboardType: String, inItemSet itemSet: IndexSet?
 func setData(_ data: Data, forPasteboardType pasteboardType: String)
 ```
 
-Some apps could use `UIPasteboard.DetectionPattern` to make a primitive filter to reduce the frequency of the notification. Accessing this structure, the app will only know if the content inside the pasteboard matches some criteria but not the content itself. Thus no notification shows up. This filter is limited and simple but not something like RegExp that can match exactly seed phrases or private keys.
+有些应用可能会使用`UIPasteboard.DetectionPattern`作为初始过滤器来减少该通知的频率。通过访问该结构，应用只会知道剪切板中的内容是否符合一定条件，但并不知道具体内容是什么，因此也不会有通知弹出。该过滤器比较简单，并没有正则表达式等高级功能能来匹配助记词或私钥。
 
 ### 接力
 
