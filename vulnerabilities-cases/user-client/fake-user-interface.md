@@ -1,23 +1,23 @@
-# Fake User Interface
+# 伪用户界面
 
-## Abstract
+## 简介
 
-Fake UI tries to mimic critical software like a wallet, then guide user to enter their password, seed phrase, etc... There are some methods to distinguish between fake and genuine ones.
+伪用户界面会仿冒一些软件，比如钱包，引导用户输入他们的密码、助记词等。有一些技巧来区别真伪。
 
 
 
-## Fake UI on a scam website
+## 某个钓鱼网站上的假UI
 
-1. After click Connect Wallet, the fake UI poped up.
+1. 点击Connect Wallet后, 伪UI就出现了。
 
-![Fake UI](../../.gitbook/assets/scam\_Mac.png)
+![伪UI](../../.gitbook/assets/scam\_Mac.png)
 
-![The real one has a title bar. Though the scam website can also make it look like this, but still we have other mesaure to identify.](../../.gitbook/assets/scam\_design\_mac.jpg)
+![真正的钱包有一个标题栏。虽然钓鱼网站也可以做成这个样式，但还有其他办法鉴别。](../../.gitbook/assets/scam\_design\_mac.jpg)
 
-2\. Tell you your password is compromised and Reset Wallet is needed.
+2\. 忽悠你说你的密码已经被泄露，钱包需要重置。
 
 ![](../../.gitbook/assets/scam2\_Mac.png)
 
-3\. Asking your seed phrase.
+3\. 索要你的助记词。
 
-![This interface also looks like the real one. But beware the URL, it's from the scame website.](../../.gitbook/assets/scam3\_Mac.png)
+![这个界面看起来和真的也很相似，但请注意上方的URL，来自钓鱼网站](../../.gitbook/assets/scam3\_Mac.png)

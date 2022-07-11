@@ -4,47 +4,46 @@ coverY: 0
 
 # Zero-knowledge Proof
 
-## Definition of ZKP Security
+## ZKP安全定义
 
-In a ZKP implementation, three core principles of ZKP should be achieved to fulfil ZKP Security:
+在ZKP实现中，ZKP的三个核心特性均成立才能满足ZKP安全：
 
-### Soundness
+### 可靠性
 
-* All invalid proofs must always be rejected
-* Valid proofs should not be faked, modified or replayed
+* 所有无效输入都必须被拒绝
+* 有效输入无法作假，修改或重放
 
-#### Negative Examples
+#### 负面例子
 
-* Constrains are compromised
-* Proving keys are generated insecurely or sealed in an unsafe way
+* 约束条件被攻破
+* 证明密钥的生成方式不安全，或密封形式不安全
 
-### Zero-knowledge
+### 零知识性
 
-* Witness information shouldn't leak in any other place, eg. in a proof
+* 见证信息不应外泄，如在proof中泄露
 
-#### Negative Examples
+#### 负面例子
 
-* Private variable is published
-* Metedata attack
+* 私有变量变成了公有
+* 元数据攻击
 
-### Completeness
+### 完备性
 
-* All valid proofs must always be accepted
-* All circuits or programmes should be handled correctly
+* 所有有效的证据都应被接受
+* 所有电路和程序都应被正确处理
 
-#### Negative Examples
+#### 负面例子
 
-* R1CS incorrect generation&#x20;
-* gadget i/o value mismatch causing gadget combination fails
+* R1CS生成错误&#x20;
+* gadget i/o 值不匹配导致gadget组合失败
 
-### Other negatives
+### 其他负面例子
 
-* Data leakage through side channels or encodings
-* Any unsafe state(code execution, DoS)
-* Trusted setup hack
-* build and release integrity
-* software dependencies/libraries
-
+* 在支路或编码中泄露了数据
+* 任意的不安全状态（代码执行，DoS）
+* 初始化仪式被黑
+* build和release版本完整性有问题
+* 软件的依赖和库有问题
 
 
 

@@ -4,17 +4,15 @@ cover: >-
 coverY: -231.81454836131098
 ---
 
-# Aliasing Attack
+# 别名攻击
 
-## Abstract
+## 摘要
 
-Some ZKP privacy applications need to prevent double spending by **nullifier**, which is bound within a valid proof in a ZK way so that it can be examined in the Verifier and marked as "used" after a corresponding action is completed to avoid double spending.
+有些ZKP隐私应用需要通过**nullifier**阻止双花，该nullifier以ZK的形式绑定在proof中，可以被验证者证明，并在相关动作结束后标记为“已使用”，来避免双花。
 
-But this can be bypassed by the arithmetic features of cyclic groups if the implementation is wrong.
+不过，如果应用实现有问题，这一点可以通过循环群的特性来绕开。
 
-
-
-Here are some examples:
+以下是几个例子：
 
 [https://github.com/semaphore-protocol/semaphore/issues/16](https://github.com/semaphore-protocol/semaphore/issues/16)
 
@@ -22,11 +20,11 @@ Here are some examples:
 
 [https://github.com/semaphore-protocol/semaphore/pull/96/](https://github.com/semaphore-protocol/semaphore/pull/96/)
 
-## Background
+## 背景
 
-To reduce gas required by some ZKP schemes, Ethereum defined two precompile contracts for addition and multiplication operations of the elliptic curve **alt\_bn128** in [EIP-196](https://eips.ethereum.org/EIPS/eip-196).
+为了减少某些ZKP方案的gas消耗，以太坊为**alt\_bn128** in [EIP-196](https://eips.ethereum.org/EIPS/eip-196)曲线定义了加法和乘法的两个预编译合约。
 
-Curve **alt\_bn128** is defined as:
+曲线**alt\_bn128**的定义为：
 
 $$
 (x,y)\in (\mathbb F_p)^2\space\space |\space \space \lbrace y^2 ≡ x^3 + 3(mod \, p)\rbrace \cup \lbrace (0,0) \rbrace
@@ -36,35 +34,33 @@ $$
 \\p= 21888242871839275222246405745257275088696311157297823662689037894645226208583
 $$
 
-In the finite field `F_p`, there is a cyclic subgroup of order `q` based on generator `P1(1,2)`:
+在有限域`F_p`中，基于生成元`P1(1,2)`的循环子群的阶为`q`。
 
 $$
 q = 21888242871839275222246405745257275088548364400416034343698204186575808495617
 $$
 
-In that cyclic subgroup, there is
+在循环子群中，有
 
 $$
 x \in \mathbb F_q\, ,n \in \N \, | \, x+nq≡x(mod\,p)
 $$
 
-Namely, we can regard `q` as zero in the finite field operation, adding any multiples of `q` to the same point always return itself.
+也即，`q`在有限域计算中可以被视为0，对任意相同点加上任意数量的`q`都会得到它自己。
 
-Since we usually use `uint256` in related calculations, which has a maximum `M`, there exist `N` aliases for a given input argument `A`:
+由于我们在相关计算中一般使用`uint256`，其最大值为`M`，那么对于给定的参数`A`，有`N`个相同结果的别名：
 
 $$
 N =⌊(M-A)/q⌋
 $$
 
-That is to say, if `A` is the **nullifier**, you can construct at most `N` aliases, they are different natural numbers but will output identical results in the cyclic group. Hence, the double spending proof is invalid here, even can be abused to triple or quadruple spending.
+也就是说，如果`A`是**nullifier**，你可以构建至多`N`个别名，它们是不同的自然数，但在循环群的运算中会得到相同的结果。因此，防止双花的证明就无效了，甚至可以三花四花五花。
 
+此类型的攻击最初发现于隐私层应用**Semaphore**中，而其源头可以追溯至2017年**Christian Reitwiessner**写的一段不安全的样例实现。不幸的是，很多zkSNARKS的库如`snarkjs`和`ethsnarks`也都遵照了该样例。
 
+## 解决方案
 
-This kind of attack was first revealed in the privacy layer project **Semaphore,** and its course can be traced back to 2017 when **Christian Reitwiessner** wrote such an unsafe example for implementation. Unfortunately many zkSNARKS libs like `snarkjs` and `ethsnarks` followed this example.
-
-## Solution
-
-The solution is simple. Just restrict the inputs should be less than `q` (`snark_scalar_field`).
+解决方案很简单，只需要限制输入值需要小于`q` (`snark_scalar_field`)。
 
 ```
     VerifyingKey memory vk = verifyingKey();
@@ -77,7 +73,7 @@ The solution is simple. Just restrict the inputs should be less than `q` (`snark
     }
 ```
 
-## References
+## 参考
 
 [https://paper.seebug.org/995/](https://paper.seebug.org/995/)
 

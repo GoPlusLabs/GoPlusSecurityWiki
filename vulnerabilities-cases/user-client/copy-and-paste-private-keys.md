@@ -4,17 +4,17 @@ cover: >-
 coverY: 0
 ---
 
-# Clipboard Safety
+# 剪切板安全
 
-## Abstract
+## 摘要
 
-One of the general approaches for ordinary users to use one account in different wallet clients is to copy & paste mnemonic words or private keys. For cross-device copy, an intermediary messenger may be used, e.g. Telegram, WeChat, etc.
+一般用户使用多个钱包的常见操作为，复制粘贴私钥或助记词。对于跨设备的复制，中间还可能使用其他软件，如Telegram，微信等。
 
-There are significant security risks within such a process. None of the mainstream OSes can maintain absolute clipboard safety. iOS does this better than others but still not enough.
+而该过程是非常危险的。所有的主流操作系统并不能保证剪切板安全。iOS稍微好些，但也还远远不够。
 
 ## Windows
 
-Windows software has almost unlimited power to access and manipulate the clipboard. It can read and set content easily without warning or reminder to the user.
+Windows软件几乎有无限的权力来访问和操控剪切板。读写也都不会对用户有任何警示。
 
 ```
 //.NET
@@ -30,7 +30,7 @@ Clipboard.GetContent()
 
 ## macOS
 
-Like Windows, any desktop platform can easily access or change the clipboard without warning.
+与Windows一样，任何桌面平台都能非常轻松地、无提示地读写剪切板。
 
 ```
 // Cocoa
@@ -41,13 +41,13 @@ func setString(_ string: String, forType dataType: NSPasteboard.PasteboardType) 
 
 ## iOS
 
-iOS is better and more secure on this topic. But it's still too difficult for ordinary users to identify and prevent malicious clipboard monitoring in advance.
+iOS在这个问题上表现地更安全一些。不过对普通用户而言还是无法甄别和阻止剪切板监控。
 
-Apps in the foreground or background-mode-enabled apps(map, music player, etc.) could read your pasteboard.&#x20;
+在前台或启用了后台模式的App（音乐，地图等）可以读取剪切板&#x20;
 
-A suspended app(turned into background and has no background working manifest) cannot.
+处于suspended状态的app（已经入后台且没有声明需要后台工作）无法实现这点。
 
-Starting in iOS 14, the system **notifies** the user when an app gets **general pasteboard** content that originated in a different app.&#x20;
+自iOS 14后，当有应用获取了**通用剪切板**中来自其他app的内容后，系统会给用户**通知**。&#x20;
 
 ![Pasteboard Notification](../../.gitbook/assets/apollo-clipboard-alerts-9to5mac.jpg.webp)
 
@@ -60,11 +60,11 @@ func setData(_ data: Data, forPasteboardType pasteboardType: String)
 
 Some apps could use `UIPasteboard.DetectionPattern` to make a primitive filter to reduce the frequency of the notification. Accessing this structure, the app will only know if the content inside the pasteboard matches some criteria but not the content itself. Thus no notification shows up. This filter is limited and simple but not something like RegExp that can match exactly seed phrases or private keys.
 
-### Handoff
+### 接力
 
-With Handoff, when a user’s iOS, iPadOS, and macOS devices are near each other, their clipboards are shared.&#x20;
+通过接力，当用户使用iOS, iPadOS和macOS设备并距离较近时，这些设备的剪切板是共享的。&#x20;
 
-According to Apple's technical docs, we can assume handoff is secure in the transmission stage. But it can't prevent clipboard monitor apps/malware on both devices.
+根据Apple的技术文档，我们可以认为接力在传输阶段是安全的。不过这并不能阻止设备端上的剪切板监控应用或恶意软件。
 
 > When a user signs in to iCloud on a second Handoff-capable device, the two devices establish a Bluetooth Low Energy (BLE) 4.2 pairing out-of-band using APNs. The individual messages are encrypted much like messages in iMessage are. After the devices are paired, each device generates a symmetric 256-bit AES key that gets stored in the device’s [keychain](https://support.apple.com/zh-cn/guide/security/aside/sec1e14cf8d3/1/web/1). This key can encrypt and authenticate the BLE advertisements that communicate the device’s current activity to other iCloud paired devices using AES256 in GCM mode, with replay protection measures.
 >
@@ -72,9 +72,9 @@ According to Apple's technical docs, we can assume handoff is secure in the tran
 
 ## Android
 
-Though in Android, there are clear application lifecycles as in iOS, an app could bypass that with at least 10 ways to bypass lifecycle limitations to keep itself in a running state that can monitor other things. And there is no clipboard notification on Android.
+虽然在安卓中也有iOS一样清晰的应用生命周期，但至少有10种保活办法来绕过生命周期的限制，让应用一直处于能够监控其他事件的状态。而且安卓上也没有剪切板通知。
 
-We can say, the situation here is **as bad as desktop** platforms.
+可以说，安卓上的情况**与桌面端一样糟糕**。
 
 ```
 // Android, Java
@@ -82,10 +82,10 @@ pasteData = clipboard.getPrimaryClip().getItemAt(0).item.getText();
 clipboard.setPrimaryClip(ClipData.newPlainText("simple text", "Hello, World!"););
 ```
 
-## Advice
+## 建议
 
-* For app **developers**, if your app allows users to paste their mnemonic words/private keys, it's recommended to **clear the clipboard after the user pasted**.
-* For **users**, if you copied your sensitive data and pasted it somewhere, it's recommended to open another system app(e.g. Notepad, assuming it's safe) and **copy some random content to clear your clipboard**.
+* 对应用**开发者**而言，如果你的应用允许用户复制粘贴私钥或助记词，推荐在他们粘贴完后清空剪切板。
+* 对**用户**而言，如果你复制了你的敏感信息并在某处进行粘贴了，推荐你打开其他系统应用（当然，假设其是安全的，如记事本），并随便复制一些内容来清除剪切板。
 
 
 

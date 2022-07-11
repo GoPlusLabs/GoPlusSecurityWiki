@@ -5,67 +5,65 @@ coverY: 0
 
 # XCarnival
 
-## Abstract
+## 摘要
 
-NFT lending platform[@XCarnival\_Lab](https://twitter.com/XCarnival\_Lab) was exploited. At least 3000 [$ETH](https://twitter.com/search?q=%24ETH\&src=cashtag\_click)(\~$3.8M) was stolen. There was a bug in the NFT platform: After you withdraw your collateralised NFT, its orderID is still there available for loan request.
+NFT借贷平台[@XCarnival\_Lab](https://twitter.com/XCarnival\_Lab)遭到了攻击，至少价值$3.8M的以太币被盗。该平台有个Bug：在取出抵押的NFT后，其orderID仍然可用于贷款。
 
-| Status       | Exploited                                                            |   |
+| 状态       | 被攻击                                                            |   |
 | ------------ | -------------------------------------------------------------------- | - |
-| Type         | Contract, Symmtery Breaking                                          |   |
-| Date         | Jun 26, 2022                                                         |   |
-| Source       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1541145543514411008) |   |
-| Direct Loss  | $3.8M                                                                |   |
-| Project Repo | [https://github.com/xcarnival](https://github.com/xcarnival)         |   |
+| 类型         | 合约，对称性破缺                                          |   |
+| 日期         | Jun 26, 2022                                                         |   |
+| 来源       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1541145543514411008) |   |
+| 直接损失  | $3.8M                                                                |   |
+| 项目仓库 | [https://github.com/xcarnival](https://github.com/xcarnival)         |   |
 
-## Contract Structure
+## 合约结构
 
 ### [xETH](https://etherscan.io/token/0xb38707e31c813f832ef71c70731ed80b45b85b2d)
 
-* An instance of **xToken**, a contract for holding funds. Funds is borrowed from here
-* **borrow()** will be called when users request a loan
+* **xToken**的一个实例，用来存放资金的合约。资金也从这里借出。
+* **borrow()**，当用户请求贷款时会调用该方法
 
-### ****[xNFT](https://etherscan.io/address/0xb14b3b9682990ccc16f52eb04146c3ceab01169a#code)
+### [xNFT](https://etherscan.io/address/0xb14b3b9682990ccc16f52eb04146c3ceab01169a#code)
 
-* Manager of NFT collateralisation, withdrawing, etc..
-* **pledgeAndBorrow()** is in charge of depositing NFT as collateral and borrowing from xToken
-* **withdrawNFT()**  for NFT withdraw
+* NFT抵押、取回等操作的管理者
+* **pledgeAndBorrow()** 负责抵押NFT并从xToken借款
+* **withdrawNFT()**  用来取回NFT
 
 ### [P2Controller](https://etherscan.io/address/0xb7e2300e77d81336307e36ce68d6909e43f4d38a)
 
-* the checker for many lending restrictions
-* **borrowAllowed()** verifies if an orderID is valid.
+* 很多借贷限制的检查者
+* **borrowAllowed()** 验证一个orderId是否有效
 
-## Attack Vectors & Details
+## 攻击向量与详情
 
-### Holistic View
+### 整体布局
 
-1. Pledge an NFT into xETH and borrow nothing(amount = 0), an `orderID` will be generated after `pledgeAndBorrow()`
-2. `withdrawNFT()` to take the NFT back. In this step, the contract won't nullify the `orderID`
-3. Request loan by `orderID`
+1. 调用`pledgeAndBorrow()`，将NFT质押金xETH中，但什么都不借贷（amount=0)，此过程会生成一个`orderID`
+2. 调用`withdrawNFT()`取出NFT。该过程中，合约并没有取消对应的`orderID`
+3. 用`orderID`进行贷款
 
-### Details
+### 细节
 
-#### Preparation&#x20;
+#### 准备工作&#x20;
 
-[Hacker](https://etherscan.io/address/0xb7cbb4d43f1e08327a90b32a8417688c9d0b800a) funded his account from Tornado. Then bought [#BAYC](https://twitter.com/hashtag/BAYC?src=hashtag\_click) 5110 from OpenSea.
-
-
-
-**Deploy the Master contract**
-
-He deployed a [Master contract](https://etherscan.io/address/0xf70f691d30ce23786cfb3a1522cfd76d159aca8d), which derived many Slave contracts as sybils to use the same NFT for borrowing, eg. [Slave 5338](https://etherscan.io/address/0x53386a82e55202a74c6d83c7eede7a80ba553714).
+[Hacker](https://etherscan.io/address/0xb7cbb4d43f1e08327a90b32a8417688c9d0b800a)从Tornado获得启动资金。然后从OpenSea购买了[#BAYC](https://twitter.com/hashtag/BAYC?src=hashtag\_click) 5110。
 
 
 
-#### Create many orderIDs
+**部署总控合约**
 
-**Master** transferred BAYC 5110 to **Slave**(eg, 0x5338…). Slave then called `pledgeAndBorrow()` function in `xNFT`, with the BAYC and borrowed nothing(with a fake xToken and 0 amount).&#x20;
-
-In this step an orderID (43) was generated.
+黑客部署了[总控合约](https://etherscan.io/address/0xf70f691d30ce23786cfb3a1522cfd76d159aca8d), 该总控合约生成了许多个用来当女巫进行借款的马仔, 如 [Slave 5338](https://etherscan.io/address/0x53386a82e55202a74c6d83c7eede7a80ba553714).
 
 
 
-Then **Slave 5338** withdrew the NFT and sent it back to **Master**, who then repeated this process with other Slaves. In this way they created many orderIDs, which can later be used as lending credentials since bugged **`xNFT`** contract didn’t revoke the credential after withdrawing:
+#### 创建多个orderIDs
+
+**总控**将BAYC 5110发送给**马仔**(eg, 0x5338…)。马仔接着调用 `xNFT`中的`pledgeAndBorrow()`,用BAYC抵押并什么也不借(传入虚假的xToken以及0 amount).&#x20;
+
+该步骤生成了orderID(43)生成。
+
+然后**马仔533**取回了该NFT并发回至**总控**，总控再与其他马仔重复该过程。通过这种形式创建了许多orderID，之后可以用来作为贷款凭证，因为有问题的**`xNFT`**合约并没有撤销该orderID的效力：
 
 ```
     function withdrawNFT(uint256 orderId) external nonReentrant whenNotPaused(2){
@@ -88,17 +86,16 @@ Then **Slave 5338** withdrew the NFT and sent it back to **Master**, who then re
 
 
 
-#### Borrow
+#### 借款
 
-So next step the **Master** called all **Slaves**, in turn, to borrow $ETH from `xETH` contract. Attack completed. The hacker borrowed money from void(collateral NFT had already been withdrawn).&#x20;
+那么下一步就是，**总控**依次调用所有的**马仔**，从`xETH`合约中借钱。攻击完成。NFT早就被取走，黑客从虚空中借到了大笔资金。&#x20;
 
-One of the tx:
+其中一笔交易：
 
 [https://t.co/gyYFyTt8wy](https://t.co/gyYFyTt8wy)
 
 
-
-In `xETH`, `borrow()`will call `borrowInternal()` then `controller.borrowAllowed()` to verify if an orderID is valid.
+在`xETH`中，`borrow()`会调用`borrowInternal()`然后是`controller.borrowAllowed()`来验证orderID是否有效。
 
 borrow()
 
@@ -141,7 +138,7 @@ function borrowInternal(uint256 orderId, address payable borrower, uint256 borro
 
 ```
 
-Here is the `borrowAllowed()` in P2controller. It will first ask `xNFT.getOrderDetail().` There are many other restrictions, but none of them can stop the hacker. Note: the reason the hacker needed multiple slaves is there is an amount checker for a single order at the bottom.
+这个是P2controller中的`borrowAllowed()`。首先它会询问`xNFT.getOrderDetail()`。这其中有许多限制，但没有一个能阻止黑客。注意：黑客需要多个马仔是因为下面有一个可借贷数量检查。
 
 ```
 function borrowAllowed(address xToken, uint256 orderId, address borrower, uint256 borrowAmount) external whenNotPaused(xToken, 3){
@@ -181,12 +178,12 @@ function borrowAllowed(address xToken, uint256 orderId, address borrower, uint25
 
 ```
 
-## Summary
+## 总结
 
-Collateral is still valid after withdrawing.&#x20;
+问题在于在抵押品取走后仍可以借款。&#x20;
 
-Developers should be aware of the security symmetry in paired actions.
+开发者在成对的行为中应注意安全的对称性。
 
-## References
+## 参考
 
 [https://twitter.com/BenWAGMI/status/1541145543514411008](https://twitter.com/BenWAGMI/status/1541145543514411008)
