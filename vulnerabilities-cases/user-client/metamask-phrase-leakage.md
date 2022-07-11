@@ -2,7 +2,6 @@
 
 ## 摘要
 
-MetaMask before 10.11.3 might allow an attacker to access a user's secret recovery phrase because an `input field` is used for a BIP39 mnemonic, and Firefox and Chromium **save such fields to disk without encryption** in order to support the Restore Session feature, aka the Demonic issue.
 在10.11.3之前，MetaMask对BIP39助记词使用的输入框有漏洞。Firefox、Chromium等浏览器为了实现**会话恢复**功能会直接将内容以明文形式存储在磁盘，可以让攻击者能够访问到助记词。
 
 | 状态       | 已修复                                                                                            |
