@@ -14,13 +14,13 @@ The following vulnerabilities of the related contracts were exploited:
 * Ability to call arbitrary contract with insufficient checks or restrictions
 * Hash collision of function signature with `abi.encodePacked`
 
-| Status       | Fixed                                                                                            |   |
-| ------------ | ------------------------------------------------------------------------------------------------ | - |
-| Type         | Contract, Cross-Chain                                                                            |   |
-| Date         | August 10, 2021                                                                                  |   |
-| Source       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |   |
-| Direct Loss  | $610 million                                                                                     |   |
-| Project Repo | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |   |
+| Status       | Fixed                                                                                            |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| Type         | Contract, Cross-Chain                                                                            |
+| Date         | August 10, 2021                                                                                  |
+| Source       | [Slowmist](https://slowmist.medium.com/the-root-cause-of-poly-network-being-hacked-ec2ee1b0c68f) |
+| Direct Loss  | $610 million                                                                                     |
+| Project Repo | [https://github.com/polynetwork/eth-contracts](https://github.com/polynetwork/eth-contracts)     |
 
 ## Contract Structure
 
