@@ -14,6 +14,8 @@
     * [XCarnival](vulnerabilities-cases/smart-contract/symmetry-breaking/xCarnival.md)
   * [哈希碰撞](vulnerabilities-cases/smart-contract/hash-collision/README.md)
     * [Poly Network](vulnerabilities-cases/smart-contract/hash-collision/poly-network.md)
+  * [闪电贷](vulnerabilities-cases/smart-contract/flash-loan/README.md)
+    * [Cream Finance](vulnerabilities-cases/smart-contract/flash-loan/cream-finance.md)
   * [通用NFT](attack-vectors/nft.md)
     * [ERC721R Bug](vulnerabilities-cases/nft/erc721r-refund.md)
     * [Sleep Minting](vulnerabilities-cases/nft/sleepminting.md)
