@@ -27,6 +27,8 @@
 * [Replay Attack](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
 * [Phishing](vulnerabilities-cases/phishing/README.md)
+  * [Frontend Hijack](vulnerabilities-cases/phishing/frontend-hijack/README.md)
+    * [Premint.xyz](vulnerabilities-cases/phishing/frontend-hijack/premint.xyz.md)
   * [Fake User Interface](vulnerabilities-cases/user-client/fake-user-interface.md)
   * [Fake E-mail Address](vulnerabilities-cases/phishing/fake-e-mail-address.md)
 * [Basic Cryptography](vulnerabilities-cases/cryptography/README.md)
