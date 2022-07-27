@@ -10,12 +10,12 @@ coverY: -149.17985611510792
 
 Audius是一个去中心化的音乐平台。由于开发者未正确地使用代理合约，黑客对其多个合约进行了多次重初始化，来篡改项目的关键参数。
 
-| 状态       | 已攻击                                                            |
-| ------------ | -------------------------------------------------------------------- |
-| 类型         | 代理                                                                |
-| 日期         | Jul 24, 2021                                                         |
-| 来源       | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1551163358434709505) |
-| 直接损失  | $6M                                                                  |
+| 状态   | 已攻击                                                                  |
+| ---- | -------------------------------------------------------------------- |
+| 类型   | 代理                                                                   |
+| 日期   | Jul 24, 2021                                                         |
+| 来源   | [@BenWAGMI](https://twitter.com/BenWAGMI/status/1551163358434709505) |
+| 直接损失 | $6M                                                                  |
 | 项目仓库 | [https://github.com/AudiusProject](https://github.com/AudiusProject) |
 
 ## 有关账户
@@ -24,26 +24,24 @@ Audius是一个去中心化的音乐平台。由于开发者未正确地使用�
 
 **Staking Contract** [https://etherscan.io/address/0xe6d97b2099f142513be7a2a068be040656ae4591…](https://t.co/lS0uCsIMqe) (Proxy) [https://etherscan.io/address/0xea10fd3536fce6a5d40d55c790b96df33b26702f…](https://t.co/npMyDZqWog) (Impl)
 
-**DelegateManagerV2 Contract** [https://etherscan.io/address/0xf24aeab628493f82742db68596b532ab8a141057…](https://t.co/dkIaiFwyNh)&#x20;
+**DelegateManagerV2 Contract** [https://etherscan.io/address/0xf24aeab628493f82742db68596b532ab8a141057…](https://t.co/dkIaiFwyNh)
 
-**Hacker’s EOA**&#x20;
+**Hacker’s EOA**
 
-[https://etherscan.io/address/0xa0c7bd318d69424603cbf91e9969870f21b8ab4c…](https://t.co/hAkb2vlfNv)&#x20;
+[https://etherscan.io/address/0xa0c7bd318d69424603cbf91e9969870f21b8ab4c…](https://t.co/hAkb2vlfNv)
 
 **One of hacker's helper contracts**
 
 [https://etherscan.io/address/0xbdbb5945f252bc3466a319cdcc3ee8056bf2e569](https://etherscan.io/address/0xbdbb5945f252bc3466a319cdcc3ee8056bf2e569)
-
-
 
 ## 攻击向量和袭击
 
 ### 整体布局
 
 1. 通过重初始化篡改投票参数
-2. 提交恶意提案&#x20;
+2. 提交恶意提案
 3. 通过重初始化篡改自己的投票比重
-4. 投票&#x20;
+4. 投票
 5. 执行提案
 
 ### 细节
@@ -56,8 +54,7 @@ Audius是一个去中心化的音乐平台。由于开发者未正确地使用�
 
 #### 提交恶意提案
 
-向Governance提交恶意提案（编号为85）
-调用`submitProposal()`，其中 `_functionSignature = transfer(address,uint256)`，address是攻击者，数量为18,564,497,819,999,999,999,735,541，`_targetContractRegistryKey= 307800..00`（在registry合约中对应项目token地址）。提案成功将执行token的transfer。
+向Governance提交恶意提案（编号为85） 调用`submitProposal()`，其中 `_functionSignature = transfer(address,uint256)`，address是攻击者，数量为18,564,497,819,999,999,999,735,541，`_targetContractRegistryKey= 307800..00`（在registry合约中对应项目token地址）。提案成功将执行token的transfer。
 
 #### 通过重初始化篡改自己的投票比重
 
@@ -74,7 +71,6 @@ Audius是一个去中心化的音乐平台。由于开发者未正确地使用�
             );
             return participation >= votingQuorumPercent;
         }
-
 ```
 
 在**DelegateManagerV2**中先调用初始化，将自己设置为`governanceAddress`，该地址有权限进行**delegatestake**。调用`delegatestake()`，可以看到该函数对`_amount`没有检查，是随意输入的数字。黑客输入了特别大的数字。这样他只需要投票yes就可以达到额定人数。
@@ -167,13 +163,14 @@ function delegateStakeFor(
 
 #### 为恶意提案投票
 
-黑客调用Governance中的submitVote()为85号提案投赞成票，此时区块编号为15201796。
+黑客调用**Governance**中的`submitVote()`为85号提案投赞成票，此时区块编号为15201796。
 
 #### 执行恶意提案
 
 黑客调用**Governance**中的`evaluateProposalOutcome()`方法为85号提案结算，此时区块高度为15201799，已经过了他设置的3个区块的投票窗口，也达到了额定人数，也只有他进行了投票（赞成票），提案自然通过，并自动执行提案中提交的方法，也即向黑客打币。
 
-## 重出始化
+## 重初始化
+
 黑客能够重初始化一个已初始化的合约是因为不正确地使用了代理合约架构。
 
 ### 代理合约架构
@@ -210,7 +207,6 @@ Proxy中是要用一个变量记录Impl合约的地址的，上表中已经冲�
       impl := sload(slot)
     }
   }
-
 ```
 
 由此解决了储存冲突。
@@ -224,8 +220,6 @@ Proxy中是要用一个变量记录Impl合约的地址的，上表中已经冲�
 | ...         |              |                 |              |
 | Slot Custom | address impl |                 | No collison! |
 |             |              |                 |              |
-
-
 
 ### Audius中的情况
 
