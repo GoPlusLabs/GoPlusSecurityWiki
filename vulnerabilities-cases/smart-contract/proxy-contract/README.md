@@ -1,4 +1,3 @@
-
 ---
 cover: >-
   https://images.unsplash.com/photo-1534224039826-c7a0eda0e6b3?crop=entropy&cs=tinysrgb&fm=jpg&ixid=MnwxOTcwMjR8MHwxfHNlYXJjaHwyfHxjb25uZWN0aW9ufGVufDB8fHx8MTY1ODg5NTAwNQ&ixlib=rb-1.2.1&q=80
