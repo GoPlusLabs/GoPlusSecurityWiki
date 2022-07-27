@@ -27,6 +27,8 @@
 * [重放攻击](attack-vectors/replay-attack/README.md)
   * [Wintermute & OP](vulnerabilities-cases/replay-attack/wintermute-and-op.md)
 * [钓鱼](vulnerabilities-cases/phishing/README.md)
+  * [前端劫持](vulnerabilities-cases/phishing/frontend-hijack/README.md)
+    * [Premint.xyz](vulnerabilities-cases/phishing/frontend-hijack/premint.xyz.md)
   * [伪用户界面](vulnerabilities-cases/user-client/fake-user-interface.md)
   * [伪邮箱地址](vulnerabilities-cases/phishing/fake-e-mail-address.md)
 * [基础密码学](vulnerabilities-cases/cryptography/README.md)
