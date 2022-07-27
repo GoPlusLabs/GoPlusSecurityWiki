@@ -296,7 +296,7 @@ In our test, if we remove the customized variable `proxyAdmin`, no re-initialisa
 
 This attack happened due to re-initialisation was doable, which was caused by the improper understanding of proxy architecture.
 
-Developers should read [OpenZeppelin Proxy Docs](https://docs.openzeppelin.com/contracts/4.x/api/proxy) before using its proxy module. Any customisation should be made with caution. `Ownable` instead of a customised variable should be used to manage access control. If you have to use a customised variable for special purposes, it should be implemented as EIP1967's storage guide.
+Developers should read [OpenZeppelin Proxy Docs](https://docs.openzeppelin.com/contracts/4.x/api/proxy) before using its proxy module. Any customisation should be made with caution. The standard method instead of a customised variable should be used to manage access control. If you have to use a customised variable for special purposes, it should be implemented as EIP1967's storage guide.
 
 ## References
 
