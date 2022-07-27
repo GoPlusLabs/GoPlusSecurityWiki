@@ -6,7 +6,7 @@ coverY: -149.17985611510792
 
 # Audius
 
-## ExploitedAbstract
+## Abstract
 
 Audius is a fully decentralized music platform. It was hacked due to improper proxy contract usage. The hacker re-initialised multiple contracts of the project to tamper with malicious parameters.
 
