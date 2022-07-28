@@ -22,7 +22,9 @@ Audius是一个去中心化的音乐平台。由于开发者未正确地使用�
 
 **Governance Contract** [https://etherscan.io/address/0x4deca517d6817b6510798b7328f2314d3003abac…](https://t.co/Ene6G5oeSX) (Proxy) [https://etherscan.io/address/0x35dd16dfa4ea1522c29ddd087e8f076cad0ae5e8…](https://t.co/IdSuGvAQhi) (Impl)
 
-**Staking Contract** [https://etherscan.io/address/0xe6d97b2099f142513be7a2a068be040656ae4591…](https://t.co/lS0uCsIMqe) (Proxy) [https://etherscan.io/address/0xea10fd3536fce6a5d40d55c790b96df33b26702f…](https://t.co/npMyDZqWog) (Impl)
+**Staking Contract**&#x20;
+
+[https://etherscan.io/address/0xe6d97b2099f142513be7a2a068be040656ae4591…](https://t.co/lS0uCsIMqe) (Proxy) [https://etherscan.io/address/0xea10fd3536fce6a5d40d55c790b96df33b26702f…](https://t.co/npMyDZqWog) (Impl)
 
 **DelegateManagerV2 Contract** [https://etherscan.io/address/0xf24aeab628493f82742db68596b532ab8a141057…](https://t.co/dkIaiFwyNh)
 
@@ -34,7 +36,7 @@ Audius是一个去中心化的音乐平台。由于开发者未正确地使用�
 
 [https://etherscan.io/address/0xbdbb5945f252bc3466a319cdcc3ee8056bf2e569](https://etherscan.io/address/0xbdbb5945f252bc3466a319cdcc3ee8056bf2e569)
 
-## 攻击向量和袭击
+## 攻击向量和细节
 
 ### 整体布局
 
