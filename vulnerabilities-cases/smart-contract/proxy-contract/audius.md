@@ -273,19 +273,18 @@ With `initializing == true`, the modifier always allow initialisation.
 
 ```
 modifier initializer() {
-    bool isTopLevelCall = !_initializing;
-    require(
-        (isTopLevelCall && _initialized < 1) || (!Address.isContract(address(this)) && _initialized == 1),
-        "Initializable: contract is already initialized"
-    );
-    _initialized = 1;
+    require(initializing || isConstructor() || !initialized, "Contract instance has already been initialized");
+
+    bool isTopLevelCall = !initializing;
     if (isTopLevelCall) {
-        _initializing = true;
+      initializing = true;
+      initialized = true;
     }
+
     _;
+
     if (isTopLevelCall) {
-        _initializing = false;
-        emit Initialized(1);
+      initializing = false;
     }
 }
 ```
