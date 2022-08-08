@@ -2,6 +2,8 @@
 
 This is a list of Web3 security incidents that have been logged in this book and happened in 6 months.
 
+[Nomad](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/cross-chain-bridge/nomad)
+
 [Audius](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/proxy-contract/audius)
 
 [Premint.xyz](https://blog.gopluslabs.io/vulnerabilities-cases/phishing/frontend-hijack/premint.xyz)
