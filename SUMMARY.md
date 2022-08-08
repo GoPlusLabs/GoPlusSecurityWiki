@@ -21,6 +21,7 @@
     * [Sleep Minting](vulnerabilities-cases/nft/sleepminting.md)
   * [Cross-chain Bridge](vulnerabilities-cases/smart-contract/cross-chain-bridge/README.md)
     * [Poly Network](https://blog.gopluslabs.io/vulnerabilities-cases/smart-contract/hash-collision/poly-network)
+    * [Nomad](vulnerabilities-cases/smart-contract/cross-chain-bridge/nomad.md)
   * [Proxy Contract](vulnerabilities-cases/smart-contract/proxy-contract/README.md)
     * [Audius](vulnerabilities-cases/smart-contract/proxy-contract/audius.md)
 * [User Client](vulnerabilities-cases/user-client/README.md)
